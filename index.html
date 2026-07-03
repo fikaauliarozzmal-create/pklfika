@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HijabKu — Toko Hijab Online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">HijabKu</a>
+      <nav class="nav">
+        <a href="#catalog">Katalog</a>
+        <a href="#features">Fitur</a>
+        <a href="#kpi">KPI</a>
+        <button id="cartBtn" class="btn btn-outline">Keranjang (<span id="cartCount">0</span>)</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>HijabKu — Pilihan Hijab Modern & Nyaman</h1>
+          <p>Temukan koleksi hijab berkualitas dengan berbagai warna, bahan, dan model. Belanja aman, cepat, dan terpercaya.</p>
+          <a href="#catalog" class="btn">Belanja Sekarang</a>
+        </div>
+        <div class="hero-visual">
+          <div class="card highlight">Gratis ongkir & retur 7 hari</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="container features">
+      <h2>Fitur Utama</h2>
+      <div class="grid">
+        <div class="feature">Login & Register</div>
+        <div class="feature">Katalog & Filter</div>
+        <div class="feature">Keranjang & Checkout</div>
+        <div class="feature">Metode Pembayaran Lengkap</div>
+        <div class="feature">Wishlist & Review</div>
+        <div class="feature">Dashboard Admin</div>
+      </div>
+    </section>
+
+    <section id="catalog" class="container catalog">
+      <div class="catalog-head">
+        <h2>Katalog Hijab</h2>
+        <div class="filters">
+          <input id="search" placeholder="Cari produk..." />
+          <select id="filterColor">
+            <option value="">Semua Warna</option>
+            <option value="putih">Putih</option>
+            <option value="hitam">Hitam</option>
+            <option value="merah">Merah</option>
+            <option value="biru">Biru</option>
+          </select>
+          <select id="filterBahan">
+            <option value="">Semua Bahan</option>
+            <option value="cotton">Cotton</option>
+            <option value="satin">Satin</option>
+            <option value="voal">Voal</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="products" class="products-grid"></div>
+    </section>
+
+    <section id="kpi" class="container kpi">
+      <h2>KPI & Acceptance</h2>
+      <ul>
+        <li>Target: 1.000 pengguna dalam 3 bulan</li>
+        <li>Checkout berhasil ≥ 90%</li>
+        <li>Loading < 3 detik</li>
+        <li>Rating pengguna ≥ 4.5/5</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 HijabKu — Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="modal hidden">
+    <div class="modal-panel">
+      <h3>Keranjang</h3>
+      <div id="cartItems"></div>
+      <div class="checkout-section">
+        <label for="paymentMethod">Pilih Metode Pembayaran</label>
+        <select id="paymentMethod">
+          <option value="">Pilih pembayaran...</option>
+          <option value="Transfer Bank">Transfer Bank</option>
+          <option value="QRIS">QRIS</option>
+          <option value="GoPay">GoPay</option>
+          <option value="OVO">OVO</option>
+          <option value="DANA">DANA</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <div>Total: <span id="cartTotal">0</span></div>
+        <button id="checkoutBtn" class="btn">Checkout</button>
+        <button id="closeCart" class="btn btn-outline">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sample product data (mock)
+    const products = [
+      {id:1,name:'Hijab Satin Premium',price:129000,color:'putih',bahan:'satin',stock:12,desc:'Lembut dan berkilau.',image:'https://images.unsplash.com/photo-1503342452485-86b7b84bfb87?auto=format&fit=crop&w=500&q=80'},
+      {id:2,name:'Hijab Voal Casual',price:79000,color:'hitam',bahan:'voal',stock:20,desc:'Ringan dan mudah diatur.',image:'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=80'},
+      {id:3,name:'Hijab Cotton Everyday',price:65000,color:'biru',bahan:'cotton',stock:8,desc:'Nyaman untuk kegiatan sehari-hari.',image:'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80'},
+      {id:4,name:'Hijab Printed Chic',price:88000,color:'merah',bahan:'voal',stock:5,desc:'Motif modern.',image:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=500&q=80'},
+      {id:5,name:'Hijab Luxe',price:150000,color:'hitam',bahan:'satin',stock:3,desc:'Pilihan elegan untuk acara.',image:'https://images.unsplash.com/photo-1543248939-03e7f00039c0?auto=format&fit=crop&w=500&q=80'}
+    ];
+
+    const productsEl = document.getElementById('products');
+    const searchEl = document.getElementById('search');
+    const filterColor = document.getElementById('filterColor');
+    const filterBahan = document.getElementById('filterBahan');
+    const cartBtn = document.getElementById('cartBtn');
+    const cartModal = document.getElementById('cartModal');
+    const closeCart = document.getElementById('closeCart');
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartTotalEl = document.getElementById('cartTotal');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const paymentMethodEl = document.getElementById('paymentMethod');
+
+    let cart = [];
+
+    function formatIDR(n){ return 'Rp ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+
+    function renderProducts(){
+      const q = searchEl.value.toLowerCase();
+      const c = filterColor.value;
+      const b = filterBahan.value;
+      productsEl.innerHTML = '';
+      const filtered = products.filter(p=>{
+        if(c && p.color!==c) return false;
+        if(b && p.bahan!==b) return false;
+        if(q && !p.name.toLowerCase().includes(q) && !p.desc.toLowerCase().includes(q)) return false;
+        return true;
+      });
+      if(filtered.length===0) productsEl.innerHTML='<p class="muted">Tidak ada produk cocok.</p>';
+      filtered.forEach(p=>{
+        const card = document.createElement('article');
+        card.className='product-card';
+        card.innerHTML = `
+          <img class="product-image" src="${p.image}" alt="${p.name}" loading="lazy" />
+          <div class="info">
+            <h4>${p.name}</h4>
+            <div class="meta">${p.bahan} • ${p.color} • Stok: ${p.stock}</div>
+            <p class="desc">${p.desc}</p>
+            <div class="row">
+              <div class="price">${formatIDR(p.price)}</div>
+              <button class="btn btn-sm" data-id="${p.id}">Tambah</button>
+            </div>
+          </div>
+        `;
+        productsEl.appendChild(card);
+      });
+      document.querySelectorAll('.product-card .btn').forEach(btn=>{
+        btn.addEventListener('click',e=>{
+          const id = Number(e.currentTarget.dataset.id);
+          addToCart(id);
+        })
+      });
+    }
+
+    function addToCart(id){
+      const p = products.find(x=>x.id===id);
+      const existing = cart.find(i=>i.id===id);
+      if(existing){
+        if(existing.qty < p.stock) existing.qty++;
+      } else {
+        cart.push({id:p.id,name:p.name,price:p.price,qty:1});
+      }
+      updateCartUI();
+      paymentMethodEl.value = '';
+      cartModal.classList.remove('hidden');
+      paymentMethodEl.focus();
+    }
+
+    function updateCartUI(){
+      cartCountEl.textContent = cart.reduce((s,i)=>s+i.qty,0);
+      cartItemsEl.innerHTML='';
+      if(cart.length===0) cartItemsEl.innerHTML='<p class="muted">Keranjang kosong</p>';
+      cart.forEach(item=>{
+        const el = document.createElement('div');
+        el.className='cart-item';
+        el.innerHTML = `<div>${item.name} × ${item.qty}</div><div>${formatIDR(item.price*item.qty)} <button data-id="${item.id}" class="btn btn-link remove">Hapus</button></div>`;
+        cartItemsEl.appendChild(el);
+      });
+      cartItemsEl.querySelectorAll('.remove').forEach(btn=>{
+        btn.addEventListener('click',e=>{
+          const id = Number(e.currentTarget.dataset.id);
+          cart = cart.filter(i=>i.id!==id);
+          updateCartUI();
+        })
+      });
+      cartTotalEl.textContent = formatIDR(cart.reduce((s,i)=>s+i.price*i.qty,0));
+    }
+
+    searchEl.addEventListener('input',renderProducts);
+    filterColor.addEventListener('change',renderProducts);
+    filterBahan.addEventListener('change',renderProducts);
+    cartBtn.addEventListener('click',()=>cartModal.classList.remove('hidden'));
+    closeCart.addEventListener('click',()=>cartModal.classList.add('hidden'));
+    checkoutBtn.addEventListener('click',()=>{
+      if(cart.length===0) return alert('Keranjang kosong');
+      const method = paymentMethodEl.value;
+      if(!method) return alert('Silakan pilih metode pembayaran.');
+      alert(`Checkout berhasil! Metode pembayaran: ${method}.\nPesanan Anda telah diterima.`);
+      cart = [];
+      updateCartUI();
+      paymentMethodEl.value = '';
+      cartModal.classList.add('hidden');
+    });
+
+    // Initial render
+    renderProducts();
+    updateCartUI();
+  </script>
+</body>
+</html>
