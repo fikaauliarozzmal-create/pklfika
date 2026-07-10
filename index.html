@@ -1,233 +1,3678 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>HijabKu — Toko Hijab Online</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethereal Nail Studio | Premium Nail Salon</title>
+  <meta name="description" content="Ethereal Nail Studio adalah salon kuku premium dengan layanan manicure, gel polish, nail art, chrome, wedding nails, dan booking via WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --rose-900: #65113c;
+      --rose-800: #86134d;
+      --rose-700: #b11460;
+      --rose-500: #de4b88;
+      --rose-300: #f4a8c8;
+      --rose-100: #fff0f6;
+      --rose-50: #fff8fb;
+      --champagne: #fff7e8;
+      --gold: #c79447;
+      --ink: #2c1824;
+      --muted: #755c6b;
+      --line: rgba(134, 19, 77, .14);
+      --glass: rgba(255, 255, 255, .74);
+      --white: #ffffff;
+      --shadow: 0 24px 70px rgba(101, 17, 60, .14);
+      --shadow-soft: 0 16px 38px rgba(101, 17, 60, .1);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --container: min(1180px, calc(100% - 40px));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(244, 168, 200, .35), transparent 28rem),
+        radial-gradient(circle at 90% 15%, rgba(255, 247, 232, .9), transparent 24rem),
+        linear-gradient(180deg, #fff8fb 0%, #fff 42%, #fff6fa 100%);
+      overflow-x: hidden;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    ::selection {
+      background: var(--rose-700);
+      color: var(--white);
+    }
+
+    .container {
+      width: var(--container);
+      margin: 0 auto;
+    }
+
+    .section {
+      position: relative;
+      padding: 108px 0;
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(177, 20, 96, .07) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, transparent, #000 18%, #000 78%, transparent);
+    }
+
+    .section > .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 13px;
+      border: 1px solid rgba(177, 20, 96, .16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .78);
+      color: var(--rose-700);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 24px rgba(101, 17, 60, .08);
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-heading h2,
+    .split-copy h2 {
+      margin: 16px 0 14px;
+      font-family: "Playfair Display", Georgia, serif;
+      color: var(--rose-900);
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .section-heading p,
+    .split-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(244, 168, 200, .45), transparent 18rem),
+        #fff8fb;
+      transition: opacity .55s ease, visibility .55s ease;
+    }
+
+    .loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-card {
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+      color: var(--rose-800);
+    }
+
+    .loader-mark {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      border: 1px solid rgba(177, 20, 96, .16);
+      background: conic-gradient(from 130deg, var(--rose-700), var(--rose-300), var(--champagne), var(--rose-700));
+      box-shadow: 0 20px 50px rgba(177, 20, 96, .22);
+      animation: spin 1.15s linear infinite;
+      position: relative;
+    }
+
+    .loader-mark::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      background: var(--rose-50);
+    }
+
+    .loader-card strong {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 34px;
+    }
+
+    .loader-card span {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(1turn); }
+    }
+
+    .navbar {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      z-index: 999;
+      width: min(1180px, calc(100% - 30px));
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 14px 12px 20px;
+      border: 1px solid rgba(255, 255, 255, .72);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .68);
+      box-shadow: 0 18px 54px rgba(101, 17, 60, .12);
+      backdrop-filter: blur(22px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: fit-content;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--rose-800), var(--rose-500));
+      box-shadow: 0 12px 26px rgba(177, 20, 96, .24);
+    }
+
+    .brand strong {
+      display: block;
+      font-family: "Playfair Display", Georgia, serif;
+      color: var(--rose-900);
+      font-size: 23px;
+      line-height: 1;
+    }
+
+    .brand-copy span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-links a {
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: #5f4252;
+      font-size: 14px;
+      font-weight: 700;
+      transition: color .25s ease, background .25s ease, transform .25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--rose-800);
+      background: rgba(255, 240, 246, .9);
+      transform: translateY(-1px);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      color: var(--rose-900);
+      background: var(--rose-100);
+    }
+
+    .btn,
+    .btn-ghost,
+    .icon-btn,
+    .quick-btn,
+    .filter-btn,
+    .tab-btn {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 13px 22px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--rose-800), var(--rose-500));
+      font-weight: 800;
+      box-shadow: 0 16px 34px rgba(177, 20, 96, .24);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 42px rgba(177, 20, 96, .3);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 12px 20px;
+      border: 1px solid rgba(177, 20, 96, .16);
+      border-radius: 999px;
+      color: var(--rose-800);
+      background: rgba(255, 255, 255, .72);
+      font-weight: 800;
+      box-shadow: 0 12px 28px rgba(101, 17, 60, .08);
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-3px);
+      background: var(--white);
+    }
+
+    .ripple {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: rgba(255, 255, 255, .65);
+      transform: translate(-50%, -50%) scale(0);
+      animation: ripple .65s ease-out;
+      z-index: -1;
+    }
+
+    @keyframes ripple {
+      to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(24);
+      }
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      padding: 146px 0 48px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(255, 248, 251, .98) 0%, rgba(255, 248, 251, .88) 38%, rgba(255, 248, 251, .34) 68%, rgba(255, 248, 251, .1) 100%),
+        url("assets/hero.png") right center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 180px;
+      background: linear-gradient(180deg, transparent, var(--rose-50));
+      pointer-events: none;
+    }
+
+    .hero-shell {
+      position: relative;
+      z-index: 1;
+      width: var(--container);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 690px) 1fr;
+      gap: 34px;
+      align-items: end;
+    }
+
+    .hero-copy {
+      padding-bottom: 32px;
+    }
+
+    .hero-copy h1 {
+      margin: 18px 0 20px;
+      max-width: 720px;
+      font-family: "Playfair Display", Georgia, serif;
+      color: var(--rose-900);
+      font-size: clamp(52px, 8vw, 94px);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+
+    .hero-copy p {
+      max-width: 590px;
+      margin: 0;
+      color: #624758;
+      font-size: clamp(16px, 2vw, 19px);
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 32px 0 28px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .rating-badge,
+    .trust-pill,
+    .floating-card {
+      border: 1px solid rgba(255, 255, 255, .72);
+      background: rgba(255, 255, 255, .72);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    .rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: var(--rose-800);
+      font-weight: 900;
+    }
+
+    .rating-badge span {
+      color: #d99b29;
+      letter-spacing: .05em;
+    }
+
+    .trust-pill {
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero-aside {
+      display: grid;
+      justify-items: end;
+      gap: 14px;
+      padding-bottom: 50px;
+    }
+
+    .floating-card {
+      width: min(290px, 100%);
+      padding: 18px;
+      border-radius: var(--radius);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-card:nth-child(2) {
+      animation-delay: 1.5s;
+      margin-right: 64px;
+    }
+
+    .mini-metric {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mini-metric i {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      color: var(--rose-800);
+      background: var(--rose-100);
+    }
+
+    .mini-metric strong {
+      display: block;
+      color: var(--rose-900);
+      font-size: 19px;
+    }
+
+    .mini-metric span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    @keyframes float {
+      50% { transform: translateY(-14px); }
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 68px;
+      align-items: center;
+    }
+
+    .image-frame {
+      position: relative;
+      min-height: 560px;
+      border-radius: 34px;
+    }
+
+    .image-frame::before {
+      content: "";
+      position: absolute;
+      inset: 28px -18px -18px 28px;
+      z-index: -1;
+      border: 1px solid rgba(177, 20, 96, .2);
+      border-radius: 34px;
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .salon-note {
+      position: absolute;
+      left: 22px;
+      bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: calc(100% - 44px);
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .82);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(16px);
+      color: var(--rose-900);
+      font-weight: 800;
+    }
+
+    .split-copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 14px 0 4px;
+    }
+
+    .stat-box {
+      padding: 18px 16px;
+      border: 1px solid rgba(177, 20, 96, .12);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .72);
+      box-shadow: 0 16px 36px rgba(101, 17, 60, .08);
+    }
+
+    .stat-box strong {
+      display: block;
+      color: var(--rose-800);
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .stat-box span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .why-grid,
+    .services-grid,
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .glass-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, .72);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .82), rgba(255, 240, 246, .5));
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px);
+      transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+
+    .glass-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .42), transparent 42%);
+      opacity: 0;
+      transition: opacity .28s ease;
+      pointer-events: none;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-9px);
+      border-color: rgba(177, 20, 96, .22);
+      box-shadow: 0 28px 70px rgba(101, 17, 60, .16);
+    }
+
+    .glass-card:hover::after {
+      opacity: 1;
+    }
+
+    .icon-chip {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      margin-bottom: 22px;
+      border-radius: 18px;
+      color: var(--rose-800);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .92), rgba(255, 240, 246, .9));
+      box-shadow: 0 14px 30px rgba(177, 20, 96, .13);
+    }
+
+    .glass-card h3,
+    .service-card h3,
+    .testimonial-card h3 {
+      margin: 0 0 10px;
+      color: var(--rose-900);
+      font-size: 20px;
+    }
+
+    .glass-card p,
+    .service-card p,
+    .testimonial-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .service-card {
+      position: relative;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow-soft);
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .service-card.featured {
+      border-color: rgba(199, 148, 71, .42);
+      background:
+        linear-gradient(160deg, rgba(255, 247, 232, .76), rgba(255, 255, 255, .96) 48%),
+        var(--white);
+    }
+
+    .ribbon {
+      position: absolute;
+      top: 18px;
+      right: -38px;
+      width: 148px;
+      padding: 7px 0;
+      transform: rotate(38deg);
+      text-align: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--gold), #e2b86f);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .service-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 22px 0;
+      padding-top: 18px;
+      border-top: 1px dashed rgba(177, 20, 96, .2);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .service-meta strong {
+      color: var(--rose-800);
+      font-size: 19px;
+    }
+
+    .catalog-tools {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, .72);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, .7);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--rose-700);
+    }
+
+    .search-box input {
+      width: 100%;
+      min-height: 54px;
+      padding: 0 18px 0 50px;
+      border: 1px solid rgba(177, 20, 96, .13);
+      border-radius: 999px;
+      outline: 0;
+      background: var(--white);
+      color: var(--ink);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6);
+      transition: border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .search-box input:focus {
+      border-color: rgba(177, 20, 96, .36);
+      box-shadow: 0 0 0 5px rgba(222, 75, 136, .11);
+    }
+
+    .tab-row,
+    .filter-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .tab-btn,
+    .filter-btn {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 42px;
+      padding: 9px 14px;
+      border: 1px solid rgba(177, 20, 96, .14);
+      border-radius: 999px;
+      color: var(--muted);
+      background: var(--white);
+      font-size: 13px;
+      font-weight: 900;
+      transition: color .25s ease, background .25s ease, transform .25s ease;
+    }
+
+    .tab-btn:hover,
+    .filter-btn:hover,
+    .tab-btn.active,
+    .filter-btn.active {
+      color: var(--rose-800);
+      background: var(--rose-100);
+      transform: translateY(-2px);
+    }
+
+    .color-dot {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, .9);
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px rgba(101, 17, 60, .12);
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .design-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(177, 20, 96, .1);
+      border-radius: 26px;
+      background: var(--white);
+      box-shadow: var(--shadow-soft);
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+
+    .design-card:hover {
+      transform: translateY(-9px);
+      box-shadow: var(--shadow);
+    }
+
+    .design-media {
+      position: relative;
+      aspect-ratio: 4 / 4.5;
+      overflow: hidden;
+      background: var(--rose-100);
+    }
+
+    .design-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease, filter .3s ease;
+    }
+
+    .design-card:hover .design-media img {
+      transform: scale(1.08);
+      filter: saturate(1.08);
+    }
+
+    .design-badges {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      display: grid;
+      gap: 7px;
+      z-index: 2;
+    }
+
+    .badge {
+      width: fit-content;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--rose-900);
+      background: rgba(255, 255, 255, .82);
+      box-shadow: 0 10px 22px rgba(101, 17, 60, .1);
+      backdrop-filter: blur(12px);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .badge.gold {
+      color: #6a4212;
+      background: rgba(255, 247, 232, .88);
+    }
+
+    .favorite-btn {
+      position: absolute;
+      top: 13px;
+      right: 13px;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      color: var(--rose-800);
+      background: rgba(255, 255, 255, .82);
+      box-shadow: 0 12px 25px rgba(101, 17, 60, .14);
+      backdrop-filter: blur(14px);
+      transition: transform .25s ease, color .25s ease;
+    }
+
+    .favorite-btn:hover,
+    .favorite-btn.active {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--rose-800), var(--rose-500));
+      transform: scale(1.07);
+    }
+
+    .design-body {
+      padding: 16px;
+    }
+
+    .design-body h3 {
+      margin: 0 0 7px;
+      color: var(--rose-900);
+      font-size: 17px;
+    }
+
+    .design-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .design-price {
+      color: var(--rose-800);
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .quick-btn {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid rgba(177, 20, 96, .15);
+      border-radius: 999px;
+      color: var(--rose-800);
+      background: var(--rose-100);
+      font-weight: 900;
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .quick-btn:hover {
+      transform: translateY(-2px);
+      background: #ffe2ee;
+    }
+
+    .empty-state {
+      display: none;
+      margin: 34px auto 0;
+      max-width: 540px;
+      padding: 24px;
+      border: 1px dashed rgba(177, 20, 96, .28);
+      border-radius: var(--radius);
+      text-align: center;
+      color: var(--muted);
+      background: rgba(255, 255, 255, .72);
+    }
+
+    .insight-band {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .mini-panel {
+      padding: 22px;
+      border: 1px solid rgba(177, 20, 96, .12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .72);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mini-panel h3 {
+      margin: 0 0 14px;
+      color: var(--rose-900);
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill-list span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: var(--rose-100);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .calculator-card,
+    .promo-card,
+    .booking-card,
+    .contact-card,
+    .before-after-card {
+      border: 1px solid rgba(255, 255, 255, .76);
+      border-radius: 30px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .86), rgba(255, 240, 246, .58));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .calculator-card {
+      padding: 30px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .field label,
+    .addon-grid label {
+      color: var(--rose-900);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 52px;
+      padding: 0 16px;
+      border: 1px solid rgba(177, 20, 96, .14);
+      border-radius: 17px;
+      outline: 0;
+      color: var(--ink);
+      background: var(--white);
+      transition: border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .field textarea {
+      min-height: 120px;
+      padding-top: 14px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(177, 20, 96, .38);
+      box-shadow: 0 0 0 5px rgba(222, 75, 136, .11);
+    }
+
+    .addon-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .addon {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 12px;
+      border: 1px solid rgba(177, 20, 96, .12);
+      border-radius: 18px;
+      background: var(--white);
+      cursor: pointer;
+    }
+
+    .addon input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--rose-700);
+    }
+
+    .total-card {
+      display: grid;
+      place-content: center;
+      min-height: 100%;
+      padding: 34px;
+      border-radius: 30px;
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(101, 17, 60, .94), rgba(177, 20, 96, .84)),
+        url("assets/hero2.png") center / cover;
+      box-shadow: var(--shadow);
+    }
+
+    .total-card span {
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .78;
+    }
+
+    .total-card strong {
+      display: block;
+      margin: 14px 0 12px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(48px, 7vw, 76px);
+      line-height: 1;
+    }
+
+    .total-card p {
+      max-width: 430px;
+      margin: 0 0 22px;
+      color: rgba(255, 255, 255, .82);
+      line-height: 1.8;
+    }
+
+    .promo-card {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 26px;
+      align-items: center;
+      padding: 42px;
+    }
+
+    .promo-card::before {
+      content: "20% OFF";
+      position: absolute;
+      right: -24px;
+      top: 20px;
+      color: rgba(177, 20, 96, .06);
+      font-size: clamp(70px, 12vw, 150px);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      pointer-events: none;
+    }
+
+    .promo-copy h2 {
+      margin: 14px 0;
+      font-family: "Playfair Display", Georgia, serif;
+      color: var(--rose-900);
+      font-size: clamp(38px, 6vw, 70px);
+      line-height: 1;
+    }
+
+    .promo-copy p {
+      max-width: 560px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .promo-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0 0;
+    }
+
+    .promo-list span {
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: var(--rose-800);
+      background: var(--white);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .time-box {
+      min-height: 108px;
+      display: grid;
+      place-items: center;
+      padding: 14px;
+      border-radius: 24px;
+      color: var(--rose-900);
+      background: var(--white);
+      box-shadow: 0 18px 40px rgba(101, 17, 60, .1);
+    }
+
+    .time-box strong {
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .time-box span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .before-after-card {
+      padding: 20px;
+    }
+
+    .comparison {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      border-radius: 26px;
+      user-select: none;
+      background: #f8d5e3;
+      cursor: ew-resize;
+    }
+
+    .comparison img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .comparison .after {
+      clip-path: inset(0 0 0 var(--split, 50%));
+      filter: saturate(1.08) contrast(1.04);
+    }
+
+    .comparison-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--split, 50%);
+      z-index: 3;
+      width: 3px;
+      transform: translateX(-50%);
+      background: var(--white);
+      box-shadow: 0 0 0 1px rgba(101, 17, 60, .12);
+    }
+
+    .comparison-handle {
+      position: absolute;
+      top: 50%;
+      left: var(--split, 50%);
+      z-index: 4;
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      color: var(--rose-800);
+      background: rgba(255, 255, 255, .88);
+      box-shadow: 0 18px 42px rgba(101, 17, 60, .22);
+      backdrop-filter: blur(14px);
+    }
+
+    .compare-label {
+      position: absolute;
+      z-index: 4;
+      bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--rose-900);
+      background: rgba(255, 255, 255, .84);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    .compare-label.before {
+      left: 18px;
+    }
+
+    .compare-label.after-label {
+      right: 18px;
+    }
+
+    .testimonial-card {
+      overflow: hidden;
+      padding: 18px;
+      border: 1px solid rgba(177, 20, 96, .11);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .client-row {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 15px;
+    }
+
+    .client-photo {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--rose-100);
+    }
+
+    .stars {
+      color: #d99b29;
+      letter-spacing: .08em;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .result-photo {
+      width: 100%;
+      height: 170px;
+      margin-top: 18px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .insta-tile {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1;
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      background: var(--rose-100);
+    }
+
+    .insta-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .55s ease;
+    }
+
+    .insta-tile:hover img {
+      transform: scale(1.08);
+    }
+
+    .insta-tile::after {
+      content: "Lihat";
+      position: absolute;
+      inset: 14px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      color: var(--white);
+      background: rgba(101, 17, 60, .42);
+      opacity: 0;
+      transition: opacity .25s ease;
+      font-weight: 900;
+    }
+
+    .insta-tile:hover::after {
+      opacity: 1;
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .booking-card {
+      padding: 30px;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .booking-grid .wide {
+      grid-column: 1 / -1;
+    }
+
+    .booking-aside {
+      position: sticky;
+      top: 120px;
+      overflow: hidden;
+      min-height: 640px;
+      border-radius: 30px;
+      background: url("assets/about.jpg") center / cover;
+      box-shadow: var(--shadow);
+    }
+
+    .booking-aside::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 18%, rgba(101, 17, 60, .75));
+    }
+
+    .booking-note {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      z-index: 1;
+      color: var(--white);
+    }
+
+    .booking-note h3 {
+      margin: 0 0 10px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 34px;
+      line-height: 1.1;
+    }
+
+    .booking-note p {
+      margin: 0;
+      color: rgba(255, 255, 255, .82);
+      line-height: 1.7;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border: 1px solid rgba(177, 20, 96, .12);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px 22px;
+      border: 0;
+      color: var(--rose-900);
+      background: transparent;
+      text-align: left;
+      font-weight: 900;
+    }
+
+    .faq-question i {
+      flex: 0 0 auto;
+      transition: transform .25s ease;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .32s ease;
+    }
+
+    .faq-answer p {
+      margin: 0;
+      padding: 0 22px 22px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 24px;
+    }
+
+    .contact-card {
+      padding: 28px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 15px;
+      margin: 24px 0;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .7);
+    }
+
+    .contact-item i {
+      color: var(--rose-800);
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--rose-900);
+      margin-bottom: 3px;
+    }
+
+    .contact-item span,
+    .contact-item a {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .map-frame {
+      min-height: 100%;
+      overflow: hidden;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      background: var(--rose-100);
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      border: 0;
+      filter: saturate(.9) contrast(.96);
+    }
+
+    .footer {
+      padding: 58px 0 30px;
+      color: rgba(255, 255, 255, .82);
+      background:
+        radial-gradient(circle at 12% 0, rgba(244, 168, 200, .22), transparent 22rem),
+        linear-gradient(135deg, #5b0f35, #2c091c);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+
+    .footer h2,
+    .footer h3 {
+      color: var(--white);
+    }
+
+    .footer h2 {
+      margin: 0 0 14px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 38px;
+    }
+
+    .footer h3 {
+      margin: 0 0 14px;
+      font-size: 16px;
+    }
+
+    .footer p,
+    .footer a {
+      color: rgba(255, 255, 255, .72);
+      line-height: 1.8;
+    }
+
+    .footer a {
+      display: block;
+      margin: 8px 0;
+      transition: color .25s ease, transform .25s ease;
+    }
+
+    .footer a:hover {
+      color: var(--white);
+      transform: translateX(4px);
+    }
+
+    .copyright {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, .14);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .floating-actions {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 900;
+      display: grid;
+      gap: 10px;
+    }
+
+    .float-btn {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border: 0;
+      border-radius: 50%;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--rose-800), var(--rose-500));
+      box-shadow: 0 16px 34px rgba(177, 20, 96, .3);
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .float-btn.whatsapp {
+      background: linear-gradient(135deg, #128c7e, #25d366);
+    }
+
+    .float-btn:hover {
+      transform: translateY(-4px);
+    }
+
+    .top-btn {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .top-btn.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(44, 24, 36, .48);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      position: relative;
+      width: min(920px, 100%);
+      max-height: min(760px, calc(100vh - 40px));
+      overflow: auto;
+      border-radius: 30px;
+      background: var(--white);
+      box-shadow: 0 30px 90px rgba(44, 24, 36, .35);
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+    }
+
+    .modal-grid img {
+      width: 100%;
+      height: 100%;
+      min-height: 430px;
+      object-fit: cover;
+    }
+
+    .modal-copy {
+      padding: 34px;
+    }
+
+    .modal-copy h3 {
+      margin: 12px 0 8px;
+      color: var(--rose-900);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 42px;
+      line-height: 1.05;
+    }
+
+    .modal-copy p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      color: var(--rose-900);
+      background: rgba(255, 255, 255, .82);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .auth-shell,
+    .app-shell {
+      display: none;
+    }
+
+    .auth-shell.open {
+      position: fixed;
+      inset: 0;
+      z-index: 10001;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(44, 24, 36, .54);
+      backdrop-filter: blur(16px);
+    }
+
+    .auth-card {
+      width: min(980px, 100%);
+      max-height: calc(100vh - 40px);
+      overflow: auto;
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      border-radius: 30px;
+      background: var(--white);
+      box-shadow: 0 34px 90px rgba(44, 24, 36, .34);
+    }
+
+    .auth-art {
+      position: relative;
+      min-height: 560px;
+      padding: 34px;
+      display: grid;
+      align-content: end;
+      color: var(--white);
+      background:
+        linear-gradient(180deg, rgba(101, 17, 60, .1), rgba(101, 17, 60, .88)),
+        url("assets/hero2.png") center / cover;
+    }
+
+    .auth-art h2 {
+      margin: 12px 0 10px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    .auth-art p {
+      margin: 0;
+      max-width: 420px;
+      color: rgba(255, 255, 255, .8);
+      line-height: 1.75;
+    }
+
+    .auth-form {
+      position: relative;
+      padding: 34px;
+    }
+
+    .auth-form h2,
+    .app-main h1,
+    .panel-title h2 {
+      margin: 0;
+      color: var(--rose-900);
+      font-family: "Playfair Display", Georgia, serif;
+      line-height: 1.05;
+    }
+
+    .auth-form h2 {
+      font-size: 42px;
+    }
+
+    .role-switch {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 24px 0;
+    }
+
+    .role-switch button,
+    .app-tab,
+    .status-select,
+    .table-action,
+    .mini-action {
+      border: 1px solid rgba(177, 20, 96, .13);
+      border-radius: 16px;
+      background: var(--white);
+      color: var(--rose-800);
+      font-weight: 900;
+    }
+
+    .role-switch button {
+      min-height: 76px;
+      display: grid;
+      place-items: center;
+      gap: 5px;
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .role-switch button.active,
+    .app-tab.active {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--rose-800), var(--rose-500));
+      box-shadow: 0 16px 34px rgba(177, 20, 96, .2);
+    }
+
+    .auth-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      color: var(--rose-900);
+      background: var(--rose-100);
+    }
+
+    body.app-mode {
+      background: #fff7fb;
+    }
+
+    body.app-mode > .loader,
+    body.app-mode > .navbar,
+    body.app-mode > main,
+    body.app-mode > .footer,
+    body.app-mode > .floating-actions {
+      display: none;
+    }
+
+    body.app-mode .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(189, 162, 255, .32), transparent 24rem),
+        linear-gradient(180deg, #fff8fb, #fff 42%, #fff4fb);
+    }
+
+    .app-sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 22px;
+      border-right: 1px solid rgba(177, 20, 96, .12);
+      background: rgba(255, 255, 255, .82);
+      backdrop-filter: blur(20px);
+      overflow: auto;
+    }
+
+    .app-sidebar .brand {
+      margin-bottom: 28px;
+    }
+
+    .app-nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .app-tab {
+      width: 100%;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 12px 14px;
+      text-align: left;
+      transition: transform .22s ease, background .22s ease;
+    }
+
+    .app-tab:hover {
+      transform: translateX(3px);
+      background: var(--rose-100);
+    }
+
+    .app-main {
+      min-width: 0;
+      padding: 24px;
+    }
+
+    .app-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+      padding: 18px 20px;
+      border: 1px solid rgba(255, 255, 255, .78);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    .app-main h1 {
+      font-size: clamp(30px, 4vw, 48px);
+    }
+
+    .app-topbar p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: fit-content;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: var(--white);
+      box-shadow: 0 10px 24px rgba(101, 17, 60, .08);
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--rose-800), #bda2ff);
+      font-weight: 900;
+    }
+
+    .app-grid,
+    .management-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .dash-card,
+    .chart-card,
+    .table-card,
+    .form-panel,
+    .notification-card {
+      border: 1px solid rgba(177, 20, 96, .1);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .86);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .dash-card {
+      padding: 20px;
+      min-height: 134px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .dash-card i {
+      color: var(--rose-800);
+    }
+
+    .dash-card span,
+    .panel-title p,
+    .notification-card p {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .dash-card strong {
+      color: var(--rose-900);
+      font-size: 30px;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .chart-card,
+    .table-card,
+    .form-panel,
+    .notification-card {
+      padding: 22px;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .panel-title h2 {
+      font-size: 28px;
+    }
+
+    .bar-chart {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      align-items: end;
+      height: 220px;
+    }
+
+    .bar {
+      min-height: 18px;
+      border-radius: 14px 14px 6px 6px;
+      background: linear-gradient(180deg, var(--rose-500), #bda2ff);
+      position: relative;
+    }
+
+    .bar span {
+      position: absolute;
+      left: 50%;
+      bottom: -28px;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(177, 20, 96, .09);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      color: var(--rose-900);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--rose-900);
+      background: var(--rose-100);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .status-pill.done {
+      color: #0f6b52;
+      background: #dcfce7;
+    }
+
+    .status-pill.cancel {
+      color: #9f1239;
+      background: #ffe4e6;
+    }
+
+    .status-pill.process {
+      color: #6d28d9;
+      background: #ede9fe;
+    }
+
+    .status-select,
+    .table-action,
+    .mini-action {
+      min-height: 38px;
+      padding: 8px 10px;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .form-grid .wide {
+      grid-column: 1 / -1;
+    }
+
+    .notification-list,
+    .mini-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .notification-card {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      padding: 16px;
+    }
+
+    .gallery-mini {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .gallery-mini img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 12px 26px rgba(101, 17, 60, .1);
+    }
+
+    .mobile-app-toggle {
+      display: none;
+    }
+
+    @media (max-width: 1100px) {
+      .nav-links {
+        position: fixed;
+        top: 78px;
+        left: 0;
+        right: 0;
+        display: none;
+        width: min(720px, calc(100% - 30px));
+        margin: 0 auto;
+        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, .72);
+        border-radius: 26px;
+        background: rgba(255, 255, 255, .92);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(22px);
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        text-align: center;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .hero-shell,
+      .about-grid,
+      .calculator-layout,
+      .promo-card,
+      .booking-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-aside {
+        display: none;
+      }
+
+      .why-grid,
+      .services-grid,
+      .testimonial-grid,
+      .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .booking-aside {
+        position: relative;
+        top: 0;
+        min-height: 420px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      body.app-mode .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .app-sidebar {
+        position: relative;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid rgba(177, 20, 96, .12);
+      }
+
+      .app-nav {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid,
+      .chart-row,
+      .auth-card {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --container: min(100% - 28px, 1180px);
+      }
+
+      .section {
+        padding: 78px 0;
+      }
+
+      .navbar {
+        top: 10px;
+        border-radius: 26px;
+      }
+
+      .brand strong {
+        font-size: 20px;
+      }
+
+      .brand-copy span {
+        letter-spacing: .16em;
+      }
+
+      .nav-actions .btn {
+        display: none;
+      }
+
+      .nav-actions .btn-ghost {
+        min-height: 42px;
+        padding: 10px 14px;
+      }
+
+      .nav-actions .btn[data-auth-open="register"] {
+        display: inline-flex;
+        width: 42px;
+        min-height: 42px;
+        padding: 0;
+        font-size: 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 128px 0 56px;
+        background-position: 62% center;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 248, 251, .34);
+      }
+
+      .hero-copy {
+        padding-bottom: 0;
+      }
+
+      .hero-actions .btn,
+      .hero-actions .btn-ghost {
+        width: 100%;
+      }
+
+      .trust-row {
+        align-items: stretch;
+      }
+
+      .rating-badge,
+      .trust-pill {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .image-frame,
+      .image-frame img {
+        min-height: 0;
+        height: 420px;
+      }
+
+      .stat-strip,
+      .why-grid,
+      .services-grid,
+      .testimonial-grid,
+      .catalog-grid,
+      .insight-band,
+      .instagram-grid,
+      .booking-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-row {
+        grid-template-columns: 1fr;
+      }
+
+      .addon-grid,
+      .countdown {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .promo-card,
+      .calculator-card,
+      .booking-card,
+      .contact-card {
+        padding: 22px;
+        border-radius: 24px;
+      }
+
+      .comparison {
+        min-height: 390px;
+      }
+
+      .map-frame iframe {
+        min-height: 360px;
+      }
+
+      .modal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .auth-card,
+      .stats-grid,
+      .chart-row,
+      .form-grid,
+      .app-nav,
+      .gallery-mini {
+        grid-template-columns: 1fr;
+      }
+
+      .auth-art {
+        min-height: 300px;
+      }
+
+      .auth-form,
+      .app-main,
+      .chart-card,
+      .table-card,
+      .form-panel {
+        padding: 18px;
+      }
+
+      .app-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .user-pill {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .modal-grid img {
+        min-height: 280px;
+        height: 320px;
+      }
+
+      .modal-copy h3 {
+        font-size: 34px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#">HijabKu</a>
-      <nav class="nav">
-        <a href="#catalog">Katalog</a>
-        <a href="#features">Fitur</a>
-        <a href="#kpi">KPI</a>
-        <button id="cartBtn" class="btn btn-outline">Keranjang (<span id="cartCount">0</span>)</button>
-      </nav>
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-card">
+      <div class="loader-mark"></div>
+      <strong>Ethereal Nail</strong>
+      <span>Studio Premium</span>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <a class="brand" href="#home" aria-label="Ethereal Nail Studio">
+      <span class="brand-mark"><i data-lucide="sparkles"></i></span>
+      <span class="brand-copy">
+        <strong>Ethereal</strong>
+        <span>Nail Studio</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Navigasi utama">
+      <a href="#home">Home</a>
+      <a href="#about">Tentang Kami</a>
+      <a href="#why">Kenapa Memilih Kami</a>
+      <a href="#catalog">Gallery</a>
+      <a href="#services">Price List</a>
+      <a href="#testimonials">Review</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="btn-ghost" type="button" data-auth-open="login"><i data-lucide="log-in"></i> Login</button>
+      <button class="btn" type="button" data-auth-open="register" aria-label="Daftar"><i data-lucide="user-plus"></i> Daftar</button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu">
+        <i data-lucide="menu"></i>
+      </button>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h1>HijabKu — Pilihan Hijab Modern & Nyaman</h1>
-          <p>Temukan koleksi hijab berkualitas dengan berbagai warna, bahan, dan model. Belanja aman, cepat, dan terpercaya.</p>
-          <a href="#catalog" class="btn">Belanja Sekarang</a>
+    <section class="hero" id="home">
+      <div class="hero-shell">
+        <div class="hero-copy" data-aos="fade-right">
+          <span class="eyebrow"><i data-lucide="gem"></i> Salon Kuku Premium</span>
+          <h1>Kuku Cantik, Elegan, dan Mewah.</h1>
+          <p>Ethereal Nail Studio menghadirkan manicure, gel polish, dan custom nail art dengan detail rapi, produk premium, serta suasana salon yang lembut dan elegan.</p>
+          <div class="hero-actions">
+            <a href="#booking" class="btn"><i data-lucide="calendar-check"></i> Buat Janji</a>
+            <a href="#catalog" class="btn-ghost"><i data-lucide="images"></i> Lihat Galeri</a>
+          </div>
+          <div class="trust-row">
+            <div class="rating-badge"><span>★★★★★</span> 4.9</div>
+            <div class="trust-pill">Dipercaya 500+ pelanggan puas sejak 2021</div>
+          </div>
         </div>
-        <div class="hero-visual">
-          <div class="card highlight">Gratis ongkir & retur 7 hari</div>
+        <div class="hero-aside" data-aos="fade-left">
+          <div class="floating-card">
+            <div class="mini-metric">
+              <i data-lucide="shield-check"></i>
+              <div>
+                <strong>Alat Steril</strong>
+                <span>Layanan bersih untuk setiap pelanggan</span>
+              </div>
+            </div>
+          </div>
+          <div class="floating-card">
+            <div class="mini-metric">
+              <i data-lucide="wand-sparkles"></i>
+              <div>
+                <strong>Desain Custom</strong>
+                <span>Dari minimalis sampai bridal yang mewah</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="features" class="container features">
-      <h2>Fitur Utama</h2>
-      <div class="grid">
-        <div class="feature">Login & Register</div>
-        <div class="feature">Katalog & Filter</div>
-        <div class="feature">Keranjang & Checkout</div>
-        <div class="feature">Metode Pembayaran Lengkap</div>
-        <div class="feature">Wishlist & Review</div>
-        <div class="feature">Dashboard Admin</div>
-      </div>
-    </section>
-
-    <section id="catalog" class="container catalog">
-      <div class="catalog-head">
-        <h2>Katalog Hijab</h2>
-        <div class="filters">
-          <input id="search" placeholder="Cari produk..." />
-          <select id="filterColor">
-            <option value="">Semua Warna</option>
-            <option value="putih">Putih</option>
-            <option value="hitam">Hitam</option>
-            <option value="merah">Merah</option>
-            <option value="biru">Biru</option>
-          </select>
-          <select id="filterBahan">
-            <option value="">Semua Bahan</option>
-            <option value="cotton">Cotton</option>
-            <option value="satin">Satin</option>
-            <option value="voal">Voal</option>
-          </select>
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="image-frame" data-aos="fade-up">
+          <img src="assets/about.jpg" alt="Interior dan layanan Ethereal Nail Studio">
+          <div class="salon-note"><i data-lucide="flower-2"></i> Perawatan premium, suasana lembut, detail rapi.</div>
+        </div>
+        <div class="split-copy" data-aos="fade-left">
+          <span class="eyebrow"><i data-lucide="heart"></i> Tentang Kami</span>
+          <h2>Studio kuku elegan untuk hasil yang terasa personal.</h2>
+          <p>Kami merancang setiap sesi sebagai pengalaman beauty ritual yang nyaman, bersih, dan penuh perhatian. Dari konsultasi warna hingga finishing top coat, semua detail dikerjakan dengan standar salon premium.</p>
+          <p>Tim nail artist kami membantu memilih bentuk, warna, dan aksen yang sesuai dengan gaya pribadi, acara spesial, atau mood mingguanmu.</p>
+          <div class="stat-strip">
+            <div class="stat-box">
+              <strong class="counter" data-target="500">0</strong>
+              <span>Pelanggan</span>
+            </div>
+            <div class="stat-box">
+              <strong class="counter" data-target="1000">0</strong>
+              <span>Nail Art</span>
+            </div>
+            <div class="stat-box">
+              <strong class="counter" data-target="4.9">0</strong>
+              <span>Rating</span>
+            </div>
+          </div>
+          <a href="#booking" class="btn"><i data-lucide="calendar-plus"></i> Buat Janji</a>
         </div>
       </div>
-
-      <div id="products" class="products-grid"></div>
     </section>
 
-    <section id="kpi" class="container kpi">
-      <h2>KPI & Acceptance</h2>
-      <ul>
-        <li>Target: 1.000 pengguna dalam 3 bulan</li>
-        <li>Checkout berhasil ≥ 90%</li>
-        <li>Loading < 3 detik</li>
-        <li>Rating pengguna ≥ 4.5/5</li>
-      </ul>
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <span class="eyebrow"><i data-lucide="sparkle"></i> Kenapa Memilih Kami</span>
+          <h2>Layanan kecantikan dengan standar hasil yang rapi.</h2>
+          <p>Setiap layanan dibuat rapi, aman, dan menyenangkan untuk pelanggan yang ingin kuku cantik tanpa kompromi.</p>
+        </div>
+        <div class="why-grid">
+          <article class="glass-card" data-aos="fade-up">
+            <span class="icon-chip"><i data-lucide="gem"></i></span>
+            <h3>Produk Premium</h3>
+            <p>Gel, polish, dan treatment terpilih agar warna terlihat kaya dan tahan lama.</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="80">
+            <span class="icon-chip"><i data-lucide="palette"></i></span>
+            <h3>Desain Custom</h3>
+            <p>Konsultasi desain sesuai referensi, outfit, acara, dan personal style.</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="160">
+            <span class="icon-chip"><i data-lucide="shield-check"></i></span>
+            <h3>Alat Steril</h3>
+            <p>Peralatan dibersihkan dan disiapkan ulang untuk setiap sesi perawatan.</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up">
+            <span class="icon-chip"><i data-lucide="timer"></i></span>
+            <h3>Waktu Terukur</h3>
+            <p>Estimasi durasi jelas dan pengerjaan tetap detail tanpa terasa terburu-buru.</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="80">
+            <span class="icon-chip"><i data-lucide="hand-heart"></i></span>
+            <h3>Pelayanan Hangat</h3>
+            <p>Ramah, lembut, dan komunikatif dari konsultasi hingga aftercare.</p>
+          </article>
+          <article class="glass-card" data-aos="fade-up" data-aos-delay="160">
+            <span class="icon-chip"><i data-lucide="message-circle-heart"></i></span>
+            <h3>Booking Mudah</h3>
+            <p>Reservasi langsung ke WhatsApp dengan format pesan otomatis.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <span class="eyebrow"><i data-lucide="badge-dollar-sign"></i> Layanan</span>
+          <h2>Treatment pilihan untuk setiap gaya kuku.</h2>
+          <p>Pilih layanan utama, tambah aksen favorit, lalu booking jadwal yang paling nyaman.</p>
+        </div>
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="catalog">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <span class="eyebrow"><i data-lucide="layout-grid"></i> Katalog Desain</span>
+          <h2>Cari inspirasi berdasarkan gaya, kategori, warna, dan nuansa.</h2>
+          <p>Temukan referensi favorit, simpan dengan ikon hati, atau buka pratinjau cepat sebelum booking.</p>
+        </div>
+
+        <div class="catalog-tools" data-aos="fade-up">
+          <div class="search-row">
+            <div class="search-box">
+              <i data-lucide="search"></i>
+              <input id="designSearch" type="search" placeholder="Cari berdasarkan nama, warna, kategori, atau gaya..." aria-label="Cari desain kuku">
+            </div>
+            <button class="btn-ghost" type="button" id="clearFilters"><i data-lucide="rotate-ccw"></i> Reset</button>
+          </div>
+          <div class="tab-row" id="categoryTabs" aria-label="Kategori desain"></div>
+          <div class="filter-row" id="colorFilters" aria-label="Filter warna"></div>
+        </div>
+
+        <div class="catalog-grid" id="catalogGrid"></div>
+        <div class="empty-state" id="emptyState">Belum ada desain yang cocok. Coba warna atau kategori lain.</div>
+
+        <div class="insight-band">
+          <div class="mini-panel" data-aos="fade-up">
+            <h3>Desain Tren</h3>
+            <div class="pill-list" id="trendingList"></div>
+          </div>
+          <div class="mini-panel" data-aos="fade-up" data-aos-delay="100">
+            <h3>Baru Dilihat</h3>
+            <div class="pill-list" id="recentList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <span class="eyebrow"><i data-lucide="calculator"></i> Kalkulator Harga</span>
+          <h2>Pilih treatment dan lihat totalnya secara langsung.</h2>
+          <p>Harga bersifat estimasi dan dapat menyesuaikan tingkat kesulitan desain.</p>
+        </div>
+        <div class="calculator-layout">
+          <div class="calculator-card" data-aos="fade-right">
+            <div class="field">
+              <label for="calcService">Layanan</label>
+              <select id="calcService"></select>
+            </div>
+            <div>
+              <label>Tambahan</label>
+              <div class="addon-grid" id="addonGrid"></div>
+            </div>
+          </div>
+          <div class="total-card" data-aos="fade-left">
+            <span>Estimasi Total</span>
+            <strong id="totalPrice">Rp0</strong>
+            <p>Tambahkan chrome, stones, 3D, extension, atau French tip untuk melihat estimasi biaya sebelum booking.</p>
+            <a href="#booking" class="btn"><i data-lucide="calendar-heart"></i> Lanjut Booking</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="promo">
+      <div class="container">
+        <div class="promo-card" data-aos="zoom-in">
+          <div class="promo-copy">
+            <span class="eyebrow"><i data-lucide="gift"></i> Promo</span>
+            <h2>Promo Weekend Glow</h2>
+            <p>Dapatkan 20% OFF untuk booking akhir pekan, diskon ulang tahun, dan diskon pelajar untuk treatment pilihan.</p>
+            <div class="promo-list">
+              <span>20% OFF</span>
+              <span>Diskon Ulang Tahun</span>
+              <span>Diskon Pelajar</span>
+            </div>
+          </div>
+          <div class="countdown" id="countdown" aria-label="Hitung mundur promo"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="before-after">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <span class="eyebrow"><i data-lucide="scan-line"></i> Sebelum & Sesudah</span>
+          <h2>Geser untuk melihat hasil akhirnya.</h2>
+          <p>Interaktif dan halus untuk memperlihatkan transformasi treatment.</p>
+        </div>
+        <div class="before-after-card" data-aos="fade-up">
+          <div class="comparison" id="comparison" style="--split: 48%;">
+            <img src="assets/kuku.jpeg" alt="Sebelum treatment kuku">
+            <img class="after" src="assets/merah.jpeg" alt="Sesudah hasil nail art">
+            <span class="comparison-line"></span>
+            <span class="comparison-handle"><i data-lucide="move-horizontal"></i></span>
+            <span class="compare-label before">Sebelum</span>
+            <span class="compare-label after-label">Sesudah</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <span class="eyebrow"><i data-lucide="messages-square"></i> Testimoni</span>
+          <h2>Disukai pelanggan yang memperhatikan detail.</h2>
+          <p>Review pelanggan dengan hasil kuku favorit mereka.</p>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card" data-aos="fade-up">
+            <div class="client-row">
+              <img class="client-photo" src="assets/yooo.jpeg" alt="Foto pelanggan Ayu">
+              <div>
+                <h3>Ayu Larasati</h3>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+            <p>Hasilnya rapi banget dan warna pink-nya mewah. Booking juga cepat via WhatsApp.</p>
+            <img class="result-photo" src="assets/merah.jpeg" alt="Hasil kuku Ayu">
+          </article>
+          <article class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="client-row">
+              <img class="client-photo" src="assets/kuku.jpeg" alt="Foto pelanggan Nabila">
+              <div>
+                <h3>Nabila Putri</h3>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+            <p>Salon terasa nyaman, alat bersih, dan nail artist-nya sabar bantu pilih desain.</p>
+            <img class="result-photo" src="assets/about.jpg" alt="Hasil kuku Nabila">
+          </article>
+          <article class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="client-row">
+              <img class="client-photo" src="assets/merah.jpeg" alt="Foto pelanggan Clara">
+              <div>
+                <h3>Clara Devina</h3>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+            <p>Wedding nails aku cantik sekali. Detail pearl dan chrome-nya kelihatan premium.</p>
+            <img class="result-photo" src="assets/hero2.png" alt="Hasil kuku Clara">
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="instagram">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <span class="eyebrow"><i data-lucide="instagram"></i> Galeri Instagram</span>
+          <h2>Set terbaru, warna lembut, dan inspirasi harian.</h2>
+          <p>Ikuti feed kami untuk melihat update desain terbaru.</p>
+        </div>
+        <div class="instagram-grid" data-aos="fade-up">
+          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/merah.jpeg" alt="Nail art merah muda"></a>
+          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/yooo.jpeg" alt="Nail art minimalis"></a>
+          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/kuku.jpeg" alt="Nail art mewah"></a>
+          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/about.jpg" alt="Treatment salon"></a>
+          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/hero2.png" alt="Hasil nail studio"></a>
+          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/hero.png" alt="Desain kuku premium"></a>
+        </div>
+        <div style="display:flex;justify-content:center;margin-top:28px">
+          <a class="btn" href="#" aria-label="Buka Instagram"><i data-lucide="instagram"></i> Ikuti Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="booking">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <span class="eyebrow"><i data-lucide="calendar-heart"></i> Booking Jadwal</span>
+          <h2>Reservasi sesi kuku dalam satu menit.</h2>
+          <p>Form akan membuat pesan WhatsApp otomatis sesuai jadwal dan layanan pilihanmu.</p>
+        </div>
+        <div class="booking-layout">
+          <form class="booking-card" id="bookingForm" data-aos="fade-right">
+            <div class="booking-grid">
+              <div class="field">
+                <label for="bookName">Nama</label>
+                <input id="bookName" type="text" placeholder="Nama kamu" required>
+              </div>
+              <div class="field">
+                <label for="bookPhone">Nomor HP</label>
+                <input id="bookPhone" type="tel" placeholder="08xxxxxxxxxx" required>
+              </div>
+              <div class="field">
+                <label for="bookDate">Tanggal</label>
+                <input id="bookDate" type="date" required>
+              </div>
+              <div class="field">
+                <label for="bookTime">Jam</label>
+                <input id="bookTime" type="time" required>
+              </div>
+              <div class="field wide">
+                <label for="bookService">Layanan</label>
+                <select id="bookService" required></select>
+              </div>
+              <div class="field wide">
+                <label for="bookNotes">Catatan</label>
+                <textarea id="bookNotes" placeholder="Referensi desain, warna, tambahan, atau request khusus"></textarea>
+              </div>
+            </div>
+            <button class="btn" type="submit"><i data-lucide="send"></i> Kirim Booking WhatsApp</button>
+          </form>
+          <aside class="booking-aside" data-aos="fade-left">
+            <div class="booking-note">
+              <h3>Pengalaman premium dimulai dari jadwal yang pasti.</h3>
+              <p>Jam operasional Senin-Sabtu, 09.00-20.00 WIB. Konfirmasi jadwal akan dikirim melalui WhatsApp.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <span class="eyebrow"><i data-lucide="circle-help"></i> FAQ</span>
+          <h2>Hal yang sering ditanyakan sebelum booking.</h2>
+        </div>
+        <div class="faq-list" data-aos="fade-up" id="faqList">
+          <div class="faq-item active">
+            <button class="faq-question" type="button">Berapa lama pengerjaan nail art? <i data-lucide="plus"></i></button>
+            <div class="faq-answer"><p>Umumnya 45 menit sampai 3 jam, tergantung layanan, tambahan, dan tingkat detail desain.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">Apakah bisa custom desain? <i data-lucide="plus"></i></button>
+            <div class="faq-answer"><p>Bisa. Kamu dapat membawa referensi sendiri atau konsultasi langsung untuk dibuatkan versi yang sesuai.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">Berapa lama gel polish bertahan? <i data-lucide="plus"></i></button>
+            <div class="faq-answer"><p>Dengan aftercare yang baik, gel polish biasanya bertahan sekitar 2-4 minggu.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">Apakah harus booking dulu? <i data-lucide="plus"></i></button>
+            <div class="faq-answer"><p>Disarankan booking terlebih dahulu agar slot waktu dan nail artist tersedia.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">Apakah alat yang digunakan steril? <i data-lucide="plus"></i></button>
+            <div class="faq-answer"><p>Ya. Kami menjaga kebersihan alat dan area kerja untuk kenyamanan setiap pelanggan.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <span class="eyebrow"><i data-lucide="map-pin"></i> Kontak</span>
+          <h2>Kunjungi, chat, atau follow Ethereal Nail Studio.</h2>
+        </div>
+        <div class="contact-layout">
+          <div class="contact-card" data-aos="fade-right">
+            <div class="contact-list">
+              <div class="contact-item">
+                <i data-lucide="map-pin"></i>
+                <div><strong>Alamat</strong><span>Jl. Raya Ethereal No. 21, Kabupaten Tegal</span></div>
+              </div>
+              <div class="contact-item">
+                <i data-lucide="clock-3"></i>
+                <div><strong>Jam Operasional</strong><span>Senin - Sabtu, 09.00 - 20.00 WIB</span></div>
+              </div>
+              <div class="contact-item">
+                <i data-lucide="phone"></i>
+                <div><strong>Telepon</strong><a href="tel:082224425003">0822-2442-5003</a></div>
+              </div>
+              <div class="contact-item">
+                <i data-lucide="mail"></i>
+                <div><strong>Email</strong><a href="mailto:etherealnail@gmail.com">etherealnail@gmail.com</a></div>
+              </div>
+            </div>
+            <div class="social-row">
+              <a class="btn" href="https://wa.me/6282224425003"><i data-lucide="message-circle"></i> WhatsApp</a>
+              <a class="btn-ghost" href="#"><i data-lucide="instagram"></i> Instagram</a>
+              <a class="btn-ghost" href="#"><i data-lucide="music-2"></i> TikTok</a>
+            </div>
+          </div>
+          <div class="map-frame" data-aos="fade-left">
+            <iframe title="Google Maps Ethereal Nail Studio" loading="lazy" allowfullscreen src="https://www.google.com/maps?q=Kabupaten%20Tegal&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container">
-      <p>© 2026 HijabKu — Semua hak dilindungi.</p>
+      <div class="footer-grid">
+        <div>
+          <h2>Ethereal Nail</h2>
+          <p>Studio kuku premium untuk manicure, gel polish, nail art, chrome, wedding nails, dan extension dengan sentuhan feminin yang elegan.</p>
+        </div>
+        <div>
+          <h3>Jelajahi</h3>
+          <a href="#about">Tentang</a>
+          <a href="#services">Layanan</a>
+          <a href="#catalog">Katalog</a>
+          <a href="#booking">Booking</a>
+        </div>
+        <div>
+          <h3>Layanan</h3>
+          <a href="#services">Gel Polish</a>
+          <a href="#services">Nail Art Custom</a>
+          <a href="#services">Wedding Nails</a>
+          <a href="#services">Extension Kuku</a>
+        </div>
+        <div>
+          <h3>Kontak</h3>
+          <p>0822-2442-5003<br>etherealnail@gmail.com<br>Senin - Sabtu</p>
+        </div>
+      </div>
+      <div class="copyright">© 2026 Ethereal Nail Studio. Semua Hak Dilindungi.</div>
     </div>
   </footer>
 
-  <!-- Cart Modal -->
-  <div id="cartModal" class="modal hidden">
+  <div class="floating-actions" aria-label="Tombol melayang">
+    <a class="float-btn whatsapp" href="https://wa.me/6282224425003" aria-label="Chat WhatsApp"><i data-lucide="message-circle"></i></a>
+    <button class="float-btn top-btn" id="topBtn" type="button" aria-label="Kembali ke atas"><i data-lucide="arrow-up"></i></button>
+  </div>
+
+  <div class="modal" id="designModal" role="dialog" aria-modal="true" aria-label="Pratinjau desain">
     <div class="modal-panel">
-      <h3>Keranjang</h3>
-      <div id="cartItems"></div>
-      <div class="checkout-section">
-        <label for="paymentMethod">Pilih Metode Pembayaran</label>
-        <select id="paymentMethod">
-          <option value="">Pilih pembayaran...</option>
-          <option value="Transfer Bank">Transfer Bank</option>
-          <option value="QRIS">QRIS</option>
-          <option value="GoPay">GoPay</option>
-          <option value="OVO">OVO</option>
-          <option value="DANA">DANA</option>
-        </select>
-      </div>
-      <div class="modal-actions">
-        <div>Total: <span id="cartTotal">0</span></div>
-        <button id="checkoutBtn" class="btn">Checkout</button>
-        <button id="closeCart" class="btn btn-outline">Tutup</button>
-      </div>
+      <button class="modal-close" id="modalClose" type="button" aria-label="Tutup pratinjau"><i data-lucide="x"></i></button>
+      <div class="modal-grid" id="modalContent"></div>
     </div>
   </div>
 
+  <div class="auth-shell" id="authShell" aria-hidden="true">
+    <div class="auth-card" role="dialog" aria-modal="true" aria-label="Login Ethereal Nail Studio">
+      <div class="auth-art">
+        <span class="eyebrow"><i data-lucide="lock-keyhole"></i> Multi User Booking</span>
+        <h2>Masuk ke ruang kerja Ethereal.</h2>
+        <p>Pilih role demo untuk melihat dashboard Admin, Karyawan, atau Pelanggan dengan alur booking dan notifikasi yang berbeda.</p>
+      </div>
+      <form class="auth-form" id="authForm">
+        <button class="auth-close" id="authClose" type="button" aria-label="Tutup login"><i data-lucide="x"></i></button>
+        <span class="eyebrow"><i data-lucide="sparkles"></i> Akun Demo</span>
+        <h2 id="authTitle">Login</h2>
+        <p class="muted" id="authHint">Gunakan role demo. Email dan password bebas diisi.</p>
+        <div class="role-switch" id="roleSwitch">
+          <button class="active" type="button" data-role="admin"><i data-lucide="crown"></i>Admin</button>
+          <button type="button" data-role="employee"><i data-lucide="badge-check"></i>Karyawan</button>
+          <button type="button" data-role="customer"><i data-lucide="heart"></i>Pelanggan</button>
+        </div>
+        <div class="field">
+          <label for="authName">Nama</label>
+          <input id="authName" type="text" value="Ayu Ethereal" required>
+        </div>
+        <div class="field">
+          <label for="authEmail">Email</label>
+          <input id="authEmail" type="email" value="demo@ethereal.id" required>
+        </div>
+        <div class="field">
+          <label for="authPassword">Password</label>
+          <input id="authPassword" type="password" value="ethereal123" required>
+        </div>
+        <button class="btn" type="submit"><i data-lucide="layout-dashboard"></i> Masuk Dashboard</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="app-shell" id="appShell" aria-label="Dashboard aplikasi booking">
+    <aside class="app-sidebar" id="appSidebar">
+      <a class="brand" href="#home" aria-label="Ethereal Nail Studio">
+        <span class="brand-mark"><i data-lucide="sparkles"></i></span>
+        <span class="brand-copy">
+          <strong>Ethereal</strong>
+          <span>Nail Studio</span>
+        </span>
+      </a>
+      <nav class="app-nav" id="appNav" aria-label="Navigasi dashboard"></nav>
+    </aside>
+    <div class="app-main">
+      <div class="app-topbar">
+        <div>
+          <button class="mini-action mobile-app-toggle" id="mobileAppToggle" type="button"><i data-lucide="menu"></i></button>
+          <h1 id="appTitle">Dashboard</h1>
+          <p id="appSubtitle">Ringkasan aktivitas Ethereal Nail Studio.</p>
+        </div>
+        <div class="user-pill">
+          <span class="avatar" id="userAvatar">A</span>
+          <div>
+            <strong id="userName">Admin</strong>
+            <span class="muted" id="userRole" style="display:block;font-size:12px;font-weight:800">Admin</span>
+          </div>
+          <button class="mini-action" id="logoutBtn" type="button"><i data-lucide="log-out"></i></button>
+        </div>
+      </div>
+      <div class="app-grid" id="appContent"></div>
+    </div>
+  </section>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
-    // Sample product data (mock)
-    const products = [
-      {id:1,name:'Hijab Satin Premium',price:129000,color:'putih',bahan:'satin',stock:12,desc:'Lembut dan berkilau.',image:'https://images.unsplash.com/photo-1503342452485-86b7b84bfb87?auto=format&fit=crop&w=500&q=80'},
-      {id:2,name:'Hijab Voal Casual',price:79000,color:'hitam',bahan:'voal',stock:20,desc:'Ringan dan mudah diatur.',image:'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=80'},
-      {id:3,name:'Hijab Cotton Everyday',price:65000,color:'biru',bahan:'cotton',stock:8,desc:'Nyaman untuk kegiatan sehari-hari.',image:'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80'},
-      {id:4,name:'Hijab Printed Chic',price:88000,color:'merah',bahan:'voal',stock:5,desc:'Motif modern.',image:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=500&q=80'},
-      {id:5,name:'Hijab Luxe',price:150000,color:'hitam',bahan:'satin',stock:3,desc:'Pilihan elegan untuk acara.',image:'https://images.unsplash.com/photo-1543248939-03e7f00039c0?auto=format&fit=crop&w=500&q=80'}
+    const whatsappNumber = "6282224425003";
+    const money = value => `Rp${Number(value).toLocaleString("id-ID")}`;
+
+    const services = [
+      { icon: "sparkles", title: "Gel Polish", desc: "Warna glossy premium dengan cuticle care rapi dan hasil yang tahan lama.", duration: "60 menit", price: 120000, featured: true },
+      { icon: "hand", title: "Basic Manicure", desc: "Shape, buff, cuticle care, dan polish klasik untuk kuku harian yang bersih.", duration: "45 menit", price: 75000 },
+      { icon: "footprints", title: "Pedicure", desc: "Perawatan kaki relaks, pembentukan kuku, dan finishing polish yang lembut.", duration: "60 menit", price: 95000 },
+      { icon: "palette", title: "Nail Art Custom", desc: "Desain personal dengan aksen hand-painted dan detail premium.", duration: "1-3 jam", price: 150000, featured: true },
+      { icon: "badge-check", title: "French Nails", desc: "Tip klasik yang clean, timeless, tersedia gaya micro atau modern French.", duration: "75 menit", price: 135000 },
+      { icon: "sparkle", title: "Chrome Nails", desc: "Finishing mirror, glazed, atau aura chrome untuk kilau modern premium.", duration: "90 menit", price: 165000 },
+      { icon: "gem", title: "Wedding Nails", desc: "Set bridal lembut dengan pearl, shimmer, stones, dan nail art elegan.", duration: "2-3 jam", price: 250000, featured: true },
+      { icon: "move-up-right", title: "Extension Kuku", desc: "Panjang, bentuk, struktur, dan desain untuk set kuku yang lebih sculpted.", duration: "2 jam", price: 220000 }
     ];
 
-    const productsEl = document.getElementById('products');
-    const searchEl = document.getElementById('search');
-    const filterColor = document.getElementById('filterColor');
-    const filterBahan = document.getElementById('filterBahan');
-    const cartBtn = document.getElementById('cartBtn');
-    const cartModal = document.getElementById('cartModal');
-    const closeCart = document.getElementById('closeCart');
-    const cartItemsEl = document.getElementById('cartItems');
-    const cartCountEl = document.getElementById('cartCount');
-    const cartTotalEl = document.getElementById('cartTotal');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const paymentMethodEl = document.getElementById('paymentMethod');
+    const categories = ["Semua", "Classic", "Minimalis", "French", "Luxury", "Korean", "Wedding", "Glitter", "Chrome", "3D Art"];
+    const colors = [
+      { name: "Semua", hex: "linear-gradient(135deg,#f4a8c8,#fff,#c79447)" },
+      { name: "Pink", hex: "#f4a8c8" },
+      { name: "Putih", hex: "#ffffff" },
+      { name: "Hitam", hex: "#222222" },
+      { name: "Biru", hex: "#8ec5ff" },
+      { name: "Ungu", hex: "#bda2ff" },
+      { name: "Merah", hex: "#d94141" },
+      { name: "Nude", hex: "#e7c9b5" },
+      { name: "Gold", hex: "#c79447" },
+      { name: "Silver", hex: "#cfd4dc" }
+    ];
 
-    let cart = [];
+    const designs = [
+      { id: 1, name: "Rose Silk Gloss", category: "Classic", color: "Pink", style: "lembut, glossy, feminin", price: 120000, img: "assets/merah.jpeg", tags: ["Best Seller", "Tren"] },
+      { id: 2, name: "Milky White Almond", category: "Classic", color: "Putih", style: "milky, almond, clean girl", price: 125000, img: "assets/about.jpg", tags: ["Best Seller"] },
+      { id: 3, name: "Lavender Cloud", category: "Minimalis", color: "Ungu", style: "minimal, pastel, clean", price: 135000, img: "assets/hero2.png", tags: ["Baru"] },
+      { id: 4, name: "Tiny Dot Nude", category: "Minimalis", color: "Nude", style: "dot, simple, office, clean", price: 115000, img: "assets/kuku.jpeg", tags: [] },
+      { id: 5, name: "Micro French Blush", category: "French", color: "Pink", style: "micro French, clean, lembut", price: 135000, img: "assets/yooo.jpeg", tags: ["Best Seller"] },
+      { id: 6, name: "Classic French Square", category: "French", color: "Putih", style: "French klasik, square, clean", price: 130000, img: "assets/about.jpg", tags: ["Best Seller"] },
+      { id: 7, name: "Midnight Ribbon", category: "Luxury", color: "Hitam", style: "bold, elegan, ribbon", price: 185000, img: "assets/kuku.jpeg", tags: ["Baru"] },
+      { id: 8, name: "Crystal Bow Nails", category: "Luxury", color: "Silver", style: "bow, crystal, glam, elegan", price: 220000, img: "assets/hero.png", tags: ["Pita Mewah", "Tren"] },
+      { id: 9, name: "Blue Aura Tips", category: "Korean", color: "Biru", style: "aura, cute, gradient", price: 160000, img: "assets/yooo.jpeg", tags: ["Tren"] },
+      { id: 10, name: "Korean Syrup Pink", category: "Korean", color: "Pink", style: "syrup nails, Korean, glossy", price: 150000, img: "assets/merah.jpeg", tags: ["Tren"] },
+      { id: 11, name: "Pearl Whisper", category: "Wedding", color: "Putih", style: "bridal, pearl, luxury", price: 250000, img: "assets/about.jpg", tags: ["Pita Mewah"] },
+      { id: 12, name: "Soft Veil Wedding", category: "Wedding", color: "Nude", style: "wedding, veil, sheer, elegan", price: 235000, img: "assets/hero2.png", tags: [] },
+      { id: 13, name: "Gold Champagne Dust", category: "Glitter", color: "Gold", style: "sparkle, shimmer, pesta", price: 175000, img: "assets/about.jpg", tags: ["Pita Mewah"] },
+      { id: 14, name: "Pink Glitter Fade", category: "Glitter", color: "Pink", style: "glitter fade, sparkle, soft", price: 160000, img: "assets/merah.jpeg", tags: ["Tren"] },
+      { id: 15, name: "Silver Glazed Chrome", category: "Chrome", color: "Silver", style: "mirror, glazed, berkilau", price: 165000, img: "assets/hero.png", tags: ["Tren"] },
+      { id: 16, name: "Chrome Berry Luxe", category: "Chrome", color: "Ungu", style: "chrome berry, luxury, berkilau", price: 180000, img: "assets/merah.jpeg", tags: ["Tren"] },
+      { id: 17, name: "3D Bloom Garden", category: "3D Art", color: "Putih", style: "flower, tekstur, dimensional", price: 230000, img: "assets/hero2.png", tags: ["Baru"] },
+      { id: 18, name: "3D Pink Flower", category: "3D Art", color: "Pink", style: "flower, 3D, feminine, cute", price: 225000, img: "assets/merah.jpeg", tags: ["Best Seller"] }
+    ];
 
-    function formatIDR(n){ return 'Rp ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+    const addons = [
+      { name: "Chrome", price: 35000 },
+      { name: "Stones", price: 30000 },
+      { name: "3D", price: 55000 },
+      { name: "Extension", price: 100000 },
+      { name: "French", price: 25000 }
+    ];
 
-    function renderProducts(){
-      const q = searchEl.value.toLowerCase();
-      const c = filterColor.value;
-      const b = filterBahan.value;
-      productsEl.innerHTML = '';
-      const filtered = products.filter(p=>{
-        if(c && p.color!==c) return false;
-        if(b && p.bahan!==b) return false;
-        if(q && !p.name.toLowerCase().includes(q) && !p.desc.toLowerCase().includes(q)) return false;
-        return true;
-      });
-      if(filtered.length===0) productsEl.innerHTML='<p class="muted">Tidak ada produk cocok.</p>';
-      filtered.forEach(p=>{
-        const card = document.createElement('article');
-        card.className='product-card';
-        card.innerHTML = `
-          <img class="product-image" src="${p.image}" alt="${p.name}" loading="lazy" />
-          <div class="info">
-            <h4>${p.name}</h4>
-            <div class="meta">${p.bahan} • ${p.color} • Stok: ${p.stock}</div>
-            <p class="desc">${p.desc}</p>
-            <div class="row">
-              <div class="price">${formatIDR(p.price)}</div>
-              <button class="btn btn-sm" data-id="${p.id}">Tambah</button>
-            </div>
-          </div>
-        `;
-        productsEl.appendChild(card);
-      });
-      document.querySelectorAll('.product-card .btn').forEach(btn=>{
-        btn.addEventListener('click',e=>{
-          const id = Number(e.currentTarget.dataset.id);
-          addToCart(id);
-        })
-      });
-    }
+    const artists = [
+      { id: 1, name: "Maya Prameswari", phone: "0812-4567-8890", schedule: "Senin, Rabu, Jumat / 09.00-17.00", bookings: 18, photo: "assets/yooo.jpeg" },
+      { id: 2, name: "Laras Kinanti", phone: "0821-1112-3344", schedule: "Selasa, Kamis, Sabtu / 11.00-20.00", bookings: 22, photo: "assets/kuku.jpeg" },
+      { id: 3, name: "Sasha Almira", phone: "0857-9090-1212", schedule: "Senin-Sabtu / 10.00-18.00", bookings: 14, photo: "assets/merah.jpeg" }
+    ];
 
-    function addToCart(id){
-      const p = products.find(x=>x.id===id);
-      const existing = cart.find(i=>i.id===id);
-      if(existing){
-        if(existing.qty < p.stock) existing.qty++;
-      } else {
-        cart.push({id:p.id,name:p.name,price:p.price,qty:1});
+    const customers = [
+      { id: 1, name: "Ayu Larasati", email: "ayu@mail.id", phone: "0812-1000-2000", bookings: 7 },
+      { id: 2, name: "Nabila Putri", email: "nabila@mail.id", phone: "0813-3000-4000", bookings: 4 },
+      { id: 3, name: "Clara Devina", email: "clara@mail.id", phone: "0815-5000-6000", bookings: 5 },
+      { id: 4, name: "Dinda Maharani", email: "dinda@mail.id", phone: "0822-7000-8000", bookings: 2 }
+    ];
+
+    const bookingStatuses = ["Menunggu", "Diterima", "Diproses", "Selesai", "Dibatalkan"];
+    const bookings = [
+      { id: "BK-1048", customer: "Ayu Larasati", service: "Gel Polish", artist: "Maya Prameswari", date: "2026-07-09", time: "10:00", status: "Menunggu", note: "Soft pink, glossy finish", amount: 120000 },
+      { id: "BK-1049", customer: "Nabila Putri", service: "Nail Art Custom", artist: "Laras Kinanti", date: "2026-07-09", time: "13:30", status: "Diterima", note: "Referensi Korean blush", amount: 185000 },
+      { id: "BK-1050", customer: "Clara Devina", service: "Wedding Nails", artist: "Sasha Almira", date: "2026-07-10", time: "09:30", status: "Diproses", note: "Pearl, lace, champagne", amount: 275000 },
+      { id: "BK-1051", customer: "Dinda Maharani", service: "Basic Manicure", artist: "Maya Prameswari", date: "2026-07-11", time: "15:00", status: "Selesai", note: "Clean nude manicure", amount: 75000 },
+      { id: "BK-1052", customer: "Ayu Larasati", service: "Extension Kuku", artist: "Laras Kinanti", date: "2026-07-13", time: "16:00", status: "Dibatalkan", note: "Reschedule minggu depan", amount: 220000 }
+    ];
+
+    const promotions = [
+      { code: "GLOW20", title: "Weekend Glow", value: "20% OFF", period: "Juli 2026" },
+      { code: "BRIDE15", title: "Bridal Soft Set", value: "15% OFF", period: "Musim wedding" },
+      { code: "RAYA25", title: "Holiday Nails", value: "25% OFF", period: "Hari raya" }
+    ];
+
+    const testimonials = [
+      { name: "Ayu Larasati", rating: 5, status: "Tampil", text: "Hasilnya rapi banget dan warna pink-nya mewah.", photo: "assets/merah.jpeg" },
+      { name: "Nabila Putri", rating: 5, status: "Tampil", text: "Salon nyaman, alat bersih, nail artist sabar.", photo: "assets/about.jpg" },
+      { name: "Clara Devina", rating: 5, status: "Disembunyikan", text: "Wedding nails cantik sekali.", photo: "assets/hero2.png" }
+    ];
+
+    const appState = {
+      authMode: "login",
+      selectedRole: "admin",
+      user: null,
+      page: "dashboard"
+    };
+
+    const roleConfig = {
+      admin: {
+        label: "Admin",
+        subtitle: "Akses penuh untuk operasional, laporan, layanan, promo, dan konten.",
+        menus: [
+          ["dashboard", "Dashboard", "layout-dashboard"],
+          ["bookings", "Manajemen Booking", "calendar-check"],
+          ["customers", "Manajemen Pelanggan", "users"],
+          ["employees", "Manajemen Karyawan", "badge-check"],
+          ["services", "Manajemen Layanan", "sparkles"],
+          ["gallery", "Manajemen Galeri", "images"],
+          ["promo", "Manajemen Promo", "gift"],
+          ["reviews", "Manajemen Testimoni", "message-square-heart"],
+          ["reports", "Laporan", "file-spreadsheet"]
+        ]
+      },
+      employee: {
+        label: "Karyawan",
+        subtitle: "Area kerja nail artist untuk jadwal, booking pelanggan, dan update status.",
+        menus: [
+          ["dashboard", "Dashboard", "layout-dashboard"],
+          ["schedule", "Jadwal Kerja", "calendar-days"],
+          ["myBookings", "Booking Saya", "clipboard-list"],
+          ["status", "Update Status", "refresh-cw"],
+          ["profile", "Profil", "user-cog"]
+        ]
+      },
+      customer: {
+        label: "Pelanggan",
+        subtitle: "Dashboard pribadi untuk booking, riwayat, favorit, inspirasi, review, dan profil.",
+        menus: [
+          ["dashboard", "Dashboard", "layout-dashboard"],
+          ["booking", "Booking", "calendar-heart"],
+          ["history", "Riwayat Booking", "history"],
+          ["wishlist", "Wishlist", "heart"],
+          ["favorites", "Favorit", "star"],
+          ["inspiration", "Galeri Inspirasi", "images"],
+          ["review", "Review", "message-circle-heart"],
+          ["profile", "Profil", "user-cog"]
+        ]
       }
-      updateCartUI();
-      paymentMethodEl.value = '';
-      cartModal.classList.remove('hidden');
-      paymentMethodEl.focus();
+    };
+
+    const state = {
+      category: "Semua",
+      color: "Semua",
+      search: "",
+      favorites: JSON.parse(localStorage.getItem("etherealFavorites") || "[]"),
+      recent: JSON.parse(localStorage.getItem("etherealRecent") || "[]")
+    };
+
+    const servicesGrid = document.getElementById("servicesGrid");
+    const catalogGrid = document.getElementById("catalogGrid");
+    const categoryTabs = document.getElementById("categoryTabs");
+    const colorFilters = document.getElementById("colorFilters");
+    const searchInput = document.getElementById("designSearch");
+    const emptyState = document.getElementById("emptyState");
+    const trendingList = document.getElementById("trendingList");
+    const recentList = document.getElementById("recentList");
+
+    function renderServices() {
+      const serviceOptions = services.map(service => `<option value="${service.title}" data-price="${service.price}">${service.title} - ${money(service.price)}</option>`).join("");
+      servicesGrid.innerHTML = services.map((service, index) => `
+        <article class="service-card ${service.featured ? "featured" : ""}" data-aos="fade-up" data-aos-delay="${(index % 4) * 60}">
+          ${service.featured ? `<span class="ribbon">Best Seller</span>` : ""}
+          <span class="icon-chip"><i data-lucide="${service.icon}"></i></span>
+          <h3>${service.title}</h3>
+          <p>${service.desc}</p>
+          <div class="service-meta">
+            <span><i data-lucide="clock-3"></i> ${service.duration}</span>
+            <strong>${money(service.price)}</strong>
+          </div>
+          <a class="btn-ghost" href="#booking" data-service="${service.title}"><i data-lucide="calendar-plus"></i> Booking</a>
+        </article>
+      `).join("");
+      document.getElementById("calcService").innerHTML = serviceOptions;
+      document.getElementById("bookService").innerHTML = `<option value="">Pilih layanan</option>${serviceOptions}`;
     }
 
-    function updateCartUI(){
-      cartCountEl.textContent = cart.reduce((s,i)=>s+i.qty,0);
-      cartItemsEl.innerHTML='';
-      if(cart.length===0) cartItemsEl.innerHTML='<p class="muted">Keranjang kosong</p>';
-      cart.forEach(item=>{
-        const el = document.createElement('div');
-        el.className='cart-item';
-        el.innerHTML = `<div>${item.name} × ${item.qty}</div><div>${formatIDR(item.price*item.qty)} <button data-id="${item.id}" class="btn btn-link remove">Hapus</button></div>`;
-        cartItemsEl.appendChild(el);
-      });
-      cartItemsEl.querySelectorAll('.remove').forEach(btn=>{
-        btn.addEventListener('click',e=>{
-          const id = Number(e.currentTarget.dataset.id);
-          cart = cart.filter(i=>i.id!==id);
-          updateCartUI();
-        })
-      });
-      cartTotalEl.textContent = formatIDR(cart.reduce((s,i)=>s+i.price*i.qty,0));
+    function renderControls() {
+      categoryTabs.innerHTML = categories.map(category => `
+        <button class="tab-btn ${category === state.category ? "active" : ""}" type="button" data-category="${category}">${category}</button>
+      `).join("");
+      colorFilters.innerHTML = colors.map(color => `
+        <button class="filter-btn ${color.name === state.color ? "active" : ""}" type="button" data-color="${color.name}">
+          <span class="color-dot" style="background:${color.hex}"></span>${color.name}
+        </button>
+      `).join("");
     }
 
-    searchEl.addEventListener('input',renderProducts);
-    filterColor.addEventListener('change',renderProducts);
-    filterBahan.addEventListener('change',renderProducts);
-    cartBtn.addEventListener('click',()=>cartModal.classList.remove('hidden'));
-    closeCart.addEventListener('click',()=>cartModal.classList.add('hidden'));
-    checkoutBtn.addEventListener('click',()=>{
-      if(cart.length===0) return alert('Keranjang kosong');
-      const method = paymentMethodEl.value;
-      if(!method) return alert('Silakan pilih metode pembayaran.');
-      alert(`Checkout berhasil! Metode pembayaran: ${method}.\nPesanan Anda telah diterima.`);
-      cart = [];
-      updateCartUI();
-      paymentMethodEl.value = '';
-      cartModal.classList.add('hidden');
-    });
+    function filteredDesigns() {
+      const query = state.search.trim().toLowerCase();
+      return designs.filter(design => {
+        const haystack = `${design.name} ${design.color} ${design.category} ${design.style}`.toLowerCase();
+        return (state.category === "Semua" || design.category === state.category) &&
+          (state.color === "Semua" || design.color === state.color) &&
+          (!query || haystack.includes(query));
+      });
+    }
 
-    // Initial render
-    renderProducts();
-    updateCartUI();
+    function renderCatalog() {
+      const visible = filteredDesigns();
+      catalogGrid.innerHTML = visible.map(design => {
+        const isFavorite = state.favorites.includes(design.id);
+        const badges = design.tags.map(tag => `<span class="badge ${tag.includes("Mewah") ? "gold" : ""}">${tag}</span>`).join("");
+        return `
+          <article class="design-card" data-id="${design.id}" data-aos="fade-up">
+            <div class="design-media">
+              <img src="${design.img}" alt="${design.name}">
+              <div class="design-badges">${badges}</div>
+              <button class="favorite-btn ${isFavorite ? "active" : ""}" type="button" data-favorite="${design.id}" aria-label="Favorit ${design.name}">
+                <i data-lucide="heart"></i>
+              </button>
+            </div>
+            <div class="design-body">
+              <h3>${design.name}</h3>
+              <div class="design-meta"><span>${design.category} / ${design.color}</span><span class="design-price">${money(design.price)}</span></div>
+              <button class="quick-btn" type="button" data-view="${design.id}">Lihat Detail</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+      emptyState.style.display = visible.length ? "none" : "block";
+      refreshIcons();
+    }
+
+    function renderInsights() {
+      const trending = designs.filter(design => design.tags.includes("Tren")).slice(0, 5);
+      trendingList.innerHTML = trending.map(design => `<span><i data-lucide="flame"></i>${design.name}</span>`).join("");
+      const recentDesigns = state.recent.map(id => designs.find(design => design.id === id)).filter(Boolean).slice(0, 5);
+      recentList.innerHTML = recentDesigns.length
+        ? recentDesigns.map(design => `<span><i data-lucide="history"></i>${design.name}</span>`).join("")
+        : `<span><i data-lucide="history"></i>Belum ada desain dilihat</span>`;
+      refreshIcons();
+    }
+
+    function openDesign(id) {
+      const design = designs.find(item => item.id === id);
+      if (!design) return;
+      state.recent = [id, ...state.recent.filter(item => item !== id)].slice(0, 6);
+      localStorage.setItem("etherealRecent", JSON.stringify(state.recent));
+      renderInsights();
+      document.getElementById("modalContent").innerHTML = `
+        <img src="${design.img}" alt="${design.name}">
+        <div class="modal-copy">
+          <span class="eyebrow"><i data-lucide="sparkles"></i> ${design.category}</span>
+          <h3>${design.name}</h3>
+          <p>${design.style}. Warna dominan: ${design.color}. Cocok untuk pelanggan yang ingin tampilan ${design.category.toLowerCase()} dengan finishing premium.</p>
+          <div class="design-meta"><span>${design.color} / ${design.category}</span><span class="design-price">${money(design.price)}</span></div>
+          <a class="btn" href="#booking" id="modalBook"><i data-lucide="calendar-heart"></i> Booking Desain Ini</a>
+        </div>
+      `;
+      document.getElementById("designModal").classList.add("open");
+      document.body.classList.add("locked");
+      document.getElementById("modalBook").addEventListener("click", closeModal);
+      refreshIcons();
+    }
+
+    function closeModal() {
+      document.getElementById("designModal").classList.remove("open");
+      document.body.classList.remove("locked");
+    }
+
+    function updateCalculator() {
+      const select = document.getElementById("calcService");
+      const base = Number(select.selectedOptions[0]?.dataset.price || 0);
+      const addonTotal = [...document.querySelectorAll("[data-addon]:checked")].reduce((sum, input) => sum + Number(input.dataset.price), 0);
+      document.getElementById("totalPrice").textContent = money(base + addonTotal);
+    }
+
+    function renderCalculator() {
+      document.getElementById("addonGrid").innerHTML = addons.map(addon => `
+        <label class="addon">
+          <input type="checkbox" data-addon="${addon.name}" data-price="${addon.price}">
+          <span>${addon.name}<br><small>+ ${money(addon.price)}</small></span>
+        </label>
+      `).join("");
+      updateCalculator();
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const target = new Date(now);
+      target.setDate(now.getDate() + ((6 - now.getDay() + 7) % 7 || 7));
+      target.setHours(20, 0, 0, 0);
+      const diff = Math.max(0, target - now);
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff / 3600000) % 24);
+      const minutes = Math.floor((diff / 60000) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      document.getElementById("countdown").innerHTML = [
+        ["Hari", days],
+        ["Jam", hours],
+        ["Min", minutes],
+        ["Detik", seconds]
+      ].map(([label, value]) => `<div class="time-box"><strong>${String(value).padStart(2, "0")}</strong><span>${label}</span></div>`).join("");
+    }
+
+    function setupComparison() {
+      const comparison = document.getElementById("comparison");
+      let dragging = false;
+      const setSplit = event => {
+        const rect = comparison.getBoundingClientRect();
+        const point = event.touches ? event.touches[0].clientX : event.clientX;
+        const percent = Math.min(96, Math.max(4, ((point - rect.left) / rect.width) * 100));
+        comparison.style.setProperty("--split", `${percent}%`);
+      };
+      comparison.addEventListener("pointerdown", event => {
+        dragging = true;
+        comparison.setPointerCapture(event.pointerId);
+        setSplit(event);
+      });
+      comparison.addEventListener("pointermove", event => {
+        if (dragging) setSplit(event);
+      });
+      comparison.addEventListener("pointerup", () => dragging = false);
+      comparison.addEventListener("pointerleave", () => dragging = false);
+    }
+
+    function setupFaq() {
+      document.querySelectorAll(".faq-item").forEach(item => {
+        const answer = item.querySelector(".faq-answer");
+        if (item.classList.contains("active")) answer.style.maxHeight = `${answer.scrollHeight}px`;
+        item.querySelector(".faq-question").addEventListener("click", () => {
+          const active = item.classList.toggle("active");
+          answer.style.maxHeight = active ? `${answer.scrollHeight}px` : "0";
+        });
+      });
+    }
+
+    function setupCounters() {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = Number(el.dataset.target);
+          let value = 0;
+          const step = target / 70;
+          const tick = () => {
+            value += step;
+            if (value < target) {
+              el.textContent = target % 1 ? value.toFixed(1) : Math.ceil(value);
+              requestAnimationFrame(tick);
+            } else {
+              el.textContent = target % 1 ? `${target.toFixed(1)}` : `${target}+`;
+            }
+          };
+          tick();
+          observer.unobserve(el);
+        });
+      }, { threshold: .35 });
+      document.querySelectorAll(".counter").forEach(counter => observer.observe(counter));
+    }
+
+    function setupBooking() {
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("bookDate").setAttribute("min", today);
+      document.getElementById("bookingForm").addEventListener("submit", event => {
+        event.preventDefault();
+        const data = {
+          name: document.getElementById("bookName").value.trim(),
+          phone: document.getElementById("bookPhone").value.trim(),
+          date: document.getElementById("bookDate").value,
+          time: document.getElementById("bookTime").value,
+          service: document.getElementById("bookService").value,
+          notes: document.getElementById("bookNotes").value.trim() || "-"
+        };
+        const message = `Halo Ethereal Nail Studio, saya ingin booking appointment.%0A%0ANama: ${encodeURIComponent(data.name)}%0ANo HP: ${encodeURIComponent(data.phone)}%0ATanggal: ${encodeURIComponent(data.date)}%0AJam: ${encodeURIComponent(data.time)}%0ALayanan: ${encodeURIComponent(data.service)}%0ACatatan: ${encodeURIComponent(data.notes)}%0A%0AMohon konfirmasi jadwalnya.`;
+        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+      });
+    }
+
+    function statusClass(status) {
+      if (status === "Selesai") return "done";
+      if (status === "Dibatalkan") return "cancel";
+      if (status === "Diproses") return "process";
+      return "";
+    }
+
+    function table(headers, rows) {
+      return `
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead><tr>${headers.map(item => `<th>${item}</th>`).join("")}</tr></thead>
+            <tbody>${rows.join("")}</tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function statCards(items) {
+      return `<div class="stats-grid">${items.map(item => `
+        <article class="dash-card">
+          <i data-lucide="${item.icon}"></i>
+          <span>${item.label}</span>
+          <strong>${item.value}</strong>
+        </article>
+      `).join("")}</div>`;
+    }
+
+    function chartCard(title, labels, values) {
+      const max = Math.max(...values, 1);
+      return `
+        <article class="chart-card">
+          <div class="panel-title">
+            <div><h2>${title}</h2><p>Performa 6 periode terakhir.</p></div>
+          </div>
+          <div class="bar-chart">
+            ${values.map((value, index) => `<div class="bar" style="height:${Math.max(12, (value / max) * 100)}%"><span>${labels[index]}</span></div>`).join("")}
+          </div>
+        </article>
+      `;
+    }
+
+    function notificationList(role) {
+      const items = {
+        admin: [
+          ["bell-plus", "Booking baru", "Ayu Larasati meminta slot hari ini pukul 10.00."],
+          ["user-plus", "Pelanggan baru", "Dinda Maharani membuat akun pelanggan."],
+          ["message-square-heart", "Review baru", "Nabila memberi rating 5 untuk Gel Polish."]
+        ],
+        employee: [
+          ["calendar-plus", "Booking baru", "Kamu mendapat booking Nail Art Custom pukul 13.30."],
+          ["calendar-clock", "Jadwal berubah", "Slot Jumat digeser menjadi 11.00-20.00."]
+        ],
+        customer: [
+          ["check-circle", "Booking diterima", "Booking Gel Polish kamu sudah diterima."],
+          ["gift", "Promo baru", "Gunakan GLOW20 untuk diskon akhir pekan."],
+          ["alarm-clock", "Pengingat H-1", "Besok ada appointment pukul 10.00."]
+        ]
+      };
+      return `
+        <div class="notification-list">
+          ${items[role].map(item => `
+            <article class="notification-card">
+              <span class="icon-chip" style="margin:0"><i data-lucide="${item[0]}"></i></span>
+              <div><strong>${item[1]}</strong><p>${item[2]}</p></div>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function bookingRows(scope = "all") {
+      const list = scope === "employee" ? bookings.filter(item => item.artist === "Maya Prameswari") : bookings;
+      return list.map(item => `
+        <tr>
+          <td><strong>${item.id}</strong><br><span class="muted">${item.date} / ${item.time}</span></td>
+          <td>${item.customer}</td>
+          <td>${item.service}<br><span class="muted">${item.note}</span></td>
+          <td>${item.artist}</td>
+          <td><span class="status-pill ${statusClass(item.status)}">${item.status}</span></td>
+          <td>${money(item.amount)}</td>
+          <td>
+            <select class="status-select" data-booking-status="${item.id}">
+              ${bookingStatuses.map(status => `<option ${status === item.status ? "selected" : ""}>${status}</option>`).join("")}
+            </select>
+          </td>
+        </tr>
+      `);
+    }
+
+    function renderAdminPage(page) {
+      const todayBookings = bookings.filter(item => item.date === "2026-07-09").length;
+      const revenue = bookings.filter(item => item.status === "Selesai" || item.status === "Diterima" || item.status === "Diproses").reduce((sum, item) => sum + item.amount, 0);
+      if (page === "dashboard") {
+        return `
+          ${statCards([
+            { icon: "users", label: "Total pelanggan", value: customers.length },
+            { icon: "calendar-check", label: "Booking hari ini", value: todayBookings },
+            { icon: "calendar-days", label: "Booking bulan ini", value: bookings.length },
+            { icon: "wallet", label: "Total pendapatan", value: money(revenue) },
+            { icon: "clock", label: "Menunggu konfirmasi", value: bookings.filter(item => item.status === "Menunggu").length },
+            { icon: "badge-check", label: "Booking selesai", value: bookings.filter(item => item.status === "Selesai").length },
+            { icon: "x-circle", label: "Booking dibatalkan", value: bookings.filter(item => item.status === "Dibatalkan").length },
+            { icon: "sparkles", label: "Layanan aktif", value: services.length }
+          ])}
+          <div class="chart-row">
+            ${chartCard("Grafik Pendapatan", ["Feb", "Mar", "Apr", "Mei", "Jun", "Jul"], [8, 12, 15, 18, 21, 25])}
+            ${chartCard("Grafik Booking", ["Feb", "Mar", "Apr", "Mei", "Jun", "Jul"], [22, 28, 31, 36, 42, 48])}
+          </div>
+          ${notificationList("admin")}
+        `;
+      }
+      if (page === "bookings") {
+        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Booking</h2><p>Terima, tolak, ubah jadwal, dan perbarui status booking.</p></div></div>${table(["ID", "Pelanggan", "Layanan", "Karyawan", "Status", "Nominal", "Ubah Status"], bookingRows())}</section>`;
+      }
+      if (page === "customers") {
+        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Pelanggan</h2><p>Cari pelanggan, lihat riwayat, dan hapus akun bila diperlukan.</p></div><button class="mini-action"><i data-lucide="search"></i> Cari</button></div>${table(["Nama", "Email", "Nomor HP", "Total Booking", "Aksi"], customers.map(item => `<tr><td>${item.name}</td><td>${item.email}</td><td>${item.phone}</td><td>${item.bookings}</td><td class="action-row"><button class="table-action">Riwayat</button><button class="table-action">Hapus</button></td></tr>`))}</section>`;
+      }
+      if (page === "employees") {
+        return `<div class="management-grid"><section class="form-panel"><div class="panel-title"><div><h2>Tambah Karyawan</h2><p>Kelola data, jadwal kerja, dan jumlah booking nail artist.</p></div></div><div class="form-grid"><div class="field"><label>Nama</label><input placeholder="Nama karyawan"></div><div class="field"><label>Nomor HP</label><input placeholder="08xxxxxxxx"></div><div class="field wide"><label>Jadwal Kerja</label><input placeholder="Senin-Sabtu / 09.00-17.00"></div><button class="btn" type="button"><i data-lucide="plus"></i> Tambah Karyawan</button></div></section><section class="table-card">${table(["Nama", "Nomor HP", "Jadwal", "Booking", "Aksi"], artists.map(item => `<tr><td>${item.name}</td><td>${item.phone}</td><td>${item.schedule}</td><td>${item.bookings}</td><td class="action-row"><button class="table-action">Edit</button><button class="table-action">Hapus</button></td></tr>`))}</section></div>`;
+      }
+      if (page === "services") {
+        return `<div class="management-grid"><section class="form-panel"><div class="panel-title"><div><h2>Manajemen Layanan</h2><p>Tambah foto, harga, durasi, dan deskripsi layanan.</p></div></div><div class="form-grid"><div class="field"><label>Nama Layanan</label><input value="Basic Manicure"></div><div class="field"><label>Harga</label><input value="75000"></div><div class="field"><label>Durasi</label><input value="45 menit"></div><div class="field"><label>Foto</label><input type="file"></div><div class="field wide"><label>Deskripsi</label><textarea>Shape, buff, cuticle care, dan polish klasik.</textarea></div><button class="btn" type="button"><i data-lucide="save"></i> Simpan Layanan</button></div></section><section class="table-card">${table(["Layanan", "Harga", "Durasi", "Deskripsi", "Aksi"], services.slice(0, 5).map(item => `<tr><td>${item.title}</td><td>${money(item.price)}</td><td>${item.duration}</td><td>${item.desc}</td><td class="action-row"><button class="table-action">Edit</button><button class="table-action">Hapus</button></td></tr>`))}</section></div>`;
+      }
+      if (page === "gallery") {
+        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Galeri</h2><p>Upload, edit, dan hapus foto inspirasi nail art.</p></div><button class="btn"><i data-lucide="upload"></i> Upload Foto</button></div><div class="gallery-mini">${designs.slice(0, 12).map(item => `<img src="${item.img}" alt="${item.name}">`).join("")}</div></section>`;
+      }
+      if (page === "promo") {
+        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Promo</h2><p>Buat voucher, diskon bulanan, dan promo hari raya.</p></div><button class="btn"><i data-lucide="ticket-percent"></i> Buat Promo</button></div>${table(["Kode", "Promo", "Nilai", "Periode", "Aksi"], promotions.map(item => `<tr><td><strong>${item.code}</strong></td><td>${item.title}</td><td>${item.value}</td><td>${item.period}</td><td class="action-row"><button class="table-action">Edit</button><button class="table-action">Hapus</button></td></tr>`))}</section>`;
+      }
+      if (page === "reviews") {
+        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Testimoni</h2><p>Lihat, hapus, atau sembunyikan review yang tidak pantas.</p></div></div>${table(["Pelanggan", "Rating", "Komentar", "Status", "Aksi"], testimonials.map(item => `<tr><td>${item.name}</td><td>${"★".repeat(item.rating)}</td><td>${item.text}</td><td><span class="status-pill">${item.status}</span></td><td class="action-row"><button class="table-action">Sembunyikan</button><button class="table-action">Hapus</button></td></tr>`))}</section>`;
+      }
+      return `<section class="table-card"><div class="panel-title"><div><h2>Laporan</h2><p>Laporan pendapatan, booking, dan pelanggan bisa diekspor ke PDF atau Excel.</p></div><div class="action-row"><button class="btn"><i data-lucide="file-text"></i> PDF</button><button class="btn-ghost"><i data-lucide="file-spreadsheet"></i> Excel</button></div></div>${table(["Laporan", "Periode", "Total", "Status"], [["Pendapatan", "Juli 2026", money(revenue), "Siap ekspor"], ["Booking", "Juli 2026", `${bookings.length} booking`, "Siap ekspor"], ["Pelanggan", "Juli 2026", `${customers.length} pelanggan`, "Siap ekspor"]].map(item => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td><td><span class="status-pill done">${item[3]}</span></td></tr>`))}</section>`;
+    }
+
+    function renderEmployeePage(page) {
+      if (page === "dashboard") {
+        return `${statCards([{ icon: "calendar-check", label: "Booking hari ini", value: 1 }, { icon: "calendar-days", label: "Booking minggu ini", value: 5 }, { icon: "badge-check", label: "Booking selesai", value: 12 }])}<section class="table-card"><div class="panel-title"><div><h2>Booking Saya</h2><p>Daftar pelanggan yang menjadi tanggung jawabmu.</p></div></div>${table(["ID", "Pelanggan", "Layanan", "Tanggal", "Status", "Nominal", "Update"], bookingRows("employee"))}</section>${notificationList("employee")}`;
+      }
+      if (page === "schedule") return `<section class="table-card"><div class="panel-title"><div><h2>Jadwal Kerja</h2><p>Jadwal aktif untuk minggu ini.</p></div></div>${table(["Hari", "Jam", "Studio", "Catatan"], [["Senin", "09.00-17.00", "Room Rose", "Gel Polish"], ["Rabu", "09.00-17.00", "Room Pearl", "Nail Art"], ["Jumat", "11.00-20.00", "Room Rose", "Extension"]].map(item => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td><td>${item[3]}</td></tr>`))}</section>`;
+      if (page === "myBookings" || page === "status") return `<section class="table-card"><div class="panel-title"><div><h2>${page === "status" ? "Update Status" : "Booking Saya"}</h2><p>Karyawan dapat mengubah status menjadi Sedang Dikerjakan atau Selesai.</p></div></div>${table(["ID", "Nama Pelanggan", "Layanan", "Tanggal", "Catatan", "Status", "Update"], bookingRows("employee"))}</section>`;
+      return profilePanel("Karyawan");
+    }
+
+    function renderCustomerPage(page) {
+      if (page === "dashboard") {
+        return `${statCards([{ icon: "calendar-heart", label: "Booking berikutnya", value: "10 Jul" }, { icon: "gift", label: "Promo terbaru", value: "GLOW20" }, { icon: "sparkles", label: "Rekomendasi", value: "Chrome" }])}<div class="chart-row"><section class="table-card"><div class="panel-title"><div><h2>Booking Mendatang</h2><p>Jadwal yang sudah masuk antrean studio.</p></div></div>${table(["Layanan", "Nail Artist", "Tanggal", "Jam", "Status"], bookings.slice(0, 3).map(item => `<tr><td>${item.service}</td><td>${item.artist}</td><td>${item.date}</td><td>${item.time}</td><td><span class="status-pill ${statusClass(item.status)}">${item.status}</span></td></tr>`))}</section>${notificationList("customer")}</div>`;
+      }
+      if (page === "booking") return customerBookingPanel();
+      if (page === "history") return `<section class="table-card"><div class="panel-title"><div><h2>Riwayat Booking</h2><p>Booking selesai, dibatalkan, dan mendatang.</p></div></div>${table(["ID", "Layanan", "Tanggal", "Status", "Catatan"], bookings.map(item => `<tr><td>${item.id}</td><td>${item.service}</td><td>${item.date} / ${item.time}</td><td><span class="status-pill ${statusClass(item.status)}">${item.status}</span></td><td>${item.note}</td></tr>`))}</section>`;
+      if (page === "wishlist" || page === "favorites" || page === "inspiration") return `<section class="table-card"><div class="panel-title"><div><h2>${page === "wishlist" ? "Wishlist Desain" : page === "favorites" ? "Layanan Favorit" : "Galeri Inspirasi"}</h2><p>Sukai dan simpan desain nail art favoritmu.</p></div></div><div class="gallery-mini">${designs.slice(0, 12).map(item => `<img src="${item.img}" alt="${item.name}">`).join("")}</div></section>`;
+      if (page === "review") return `<section class="form-panel"><div class="panel-title"><div><h2>Review</h2><p>Berikan rating, komentar, dan upload foto hasil nail art.</p></div></div><div class="form-grid"><div class="field"><label>Rating</label><select><option>★★★★★</option><option>★★★★</option></select></div><div class="field"><label>Upload Foto</label><input type="file"></div><div class="field wide"><label>Komentar</label><textarea placeholder="Bagikan pengalamanmu"></textarea></div><button class="btn" type="button"><i data-lucide="send"></i> Kirim Review</button></div></section>`;
+      return profilePanel("Pelanggan");
+    }
+
+    function customerBookingPanel() {
+      return `<section class="form-panel"><div class="panel-title"><div><h2>Booking Baru</h2><p>Pilih layanan, nail artist, tanggal, jam, dan catatan desain.</p></div></div><div class="form-grid"><div class="field"><label>Layanan</label><select>${services.map(item => `<option>${item.title}</option>`).join("")}</select></div><div class="field"><label>Nail Artist</label><select>${artists.map(item => `<option>${item.name}</option>`).join("")}</select></div><div class="field"><label>Tanggal</label><input type="date"></div><div class="field"><label>Jam</label><input type="time"></div><div class="field wide"><label>Catatan</label><textarea placeholder="Referensi warna, desain, dan kebutuhan khusus"></textarea></div><button class="btn" type="button"><i data-lucide="calendar-plus"></i> Simpan Booking</button></div></section>`;
+    }
+
+    function profilePanel(roleLabel) {
+      return `<section class="form-panel"><div class="panel-title"><div><h2>Profil ${roleLabel}</h2><p>Ubah foto, nomor HP, password, dan data akun.</p></div></div><div class="form-grid"><div class="field"><label>Nama</label><input value="${appState.user?.name || "Ayu Ethereal"}"></div><div class="field"><label>Email</label><input value="${appState.user?.email || "demo@ethereal.id"}"></div><div class="field"><label>Nomor HP</label><input value="0812-3456-7890"></div><div class="field"><label>Foto</label><input type="file"></div><div class="field wide"><label>Password Baru</label><input type="password" placeholder="Password baru"></div><button class="btn" type="button"><i data-lucide="save"></i> Simpan Profil</button></div></section>`;
+    }
+
+    function openAuth(mode = "login") {
+      appState.authMode = mode;
+      document.getElementById("authTitle").textContent = mode === "register" ? "Daftar Akun" : "Login";
+      document.getElementById("authHint").textContent = mode === "register" ? "Buat akun pelanggan atau pilih role demo untuk preview dashboard." : "Gunakan role demo. Email dan password bebas diisi.";
+      document.getElementById("authShell").classList.add("open");
+      document.getElementById("authShell").setAttribute("aria-hidden", "false");
+      document.body.classList.add("locked");
+      refreshIcons();
+    }
+
+    function closeAuth() {
+      document.getElementById("authShell").classList.remove("open");
+      document.getElementById("authShell").setAttribute("aria-hidden", "true");
+      document.body.classList.remove("locked");
+    }
+
+    function loginToApp() {
+      const role = appState.selectedRole;
+      appState.user = {
+        role,
+        name: document.getElementById("authName").value.trim() || roleConfig[role].label,
+        email: document.getElementById("authEmail").value.trim()
+      };
+      appState.page = "dashboard";
+      closeAuth();
+      document.body.classList.remove("locked");
+      document.body.classList.add("app-mode");
+      renderApp();
+    }
+
+    function logoutApp() {
+      appState.user = null;
+      document.body.classList.remove("app-mode");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      refreshIcons();
+    }
+
+    function renderApp() {
+      if (!appState.user) return;
+      const role = appState.user.role;
+      const config = roleConfig[role];
+      document.getElementById("appTitle").textContent = appState.page === "dashboard" ? `Dashboard ${config.label}` : config.menus.find(item => item[0] === appState.page)?.[1] || "Dashboard";
+      document.getElementById("appSubtitle").textContent = config.subtitle;
+      document.getElementById("userName").textContent = appState.user.name;
+      document.getElementById("userRole").textContent = config.label;
+      document.getElementById("userAvatar").textContent = appState.user.name.charAt(0).toUpperCase();
+      document.getElementById("appNav").innerHTML = config.menus.map(item => `
+        <button class="app-tab ${appState.page === item[0] ? "active" : ""}" type="button" data-app-page="${item[0]}">
+          <i data-lucide="${item[2]}"></i>${item[1]}
+        </button>
+      `).join("");
+      const content = role === "admin" ? renderAdminPage(appState.page) : role === "employee" ? renderEmployeePage(appState.page) : renderCustomerPage(appState.page);
+      document.getElementById("appContent").innerHTML = content;
+      refreshIcons();
+    }
+
+    function setupEvents() {
+      document.getElementById("menuToggle").addEventListener("click", () => {
+        document.getElementById("navLinks").classList.toggle("open");
+      });
+      document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", () => document.getElementById("navLinks").classList.remove("open"));
+      });
+      document.querySelectorAll("[data-auth-open]").forEach(button => {
+        button.addEventListener("click", () => openAuth(button.dataset.authOpen));
+      });
+      document.getElementById("authClose").addEventListener("click", closeAuth);
+      document.getElementById("authShell").addEventListener("click", event => {
+        if (event.target.id === "authShell") closeAuth();
+      });
+      document.getElementById("roleSwitch").addEventListener("click", event => {
+        const button = event.target.closest("[data-role]");
+        if (!button) return;
+        appState.selectedRole = button.dataset.role;
+        document.querySelectorAll("#roleSwitch [data-role]").forEach(item => item.classList.toggle("active", item === button));
+      });
+      document.getElementById("authForm").addEventListener("submit", event => {
+        event.preventDefault();
+        loginToApp();
+      });
+      document.getElementById("logoutBtn").addEventListener("click", logoutApp);
+      document.getElementById("appNav").addEventListener("click", event => {
+        const button = event.target.closest("[data-app-page]");
+        if (!button) return;
+        appState.page = button.dataset.appPage;
+        renderApp();
+      });
+      document.getElementById("appContent").addEventListener("change", event => {
+        const select = event.target.closest("[data-booking-status]");
+        if (!select) return;
+        const booking = bookings.find(item => item.id === select.dataset.bookingStatus);
+        if (booking) {
+          booking.status = select.value === "Diproses" && appState.user?.role === "employee" ? "Diproses" : select.value;
+          renderApp();
+        }
+      });
+      categoryTabs.addEventListener("click", event => {
+        const button = event.target.closest("[data-category]");
+        if (!button) return;
+        state.category = button.dataset.category;
+        renderControls();
+        renderCatalog();
+      });
+      colorFilters.addEventListener("click", event => {
+        const button = event.target.closest("[data-color]");
+        if (!button) return;
+        state.color = button.dataset.color;
+        renderControls();
+        renderCatalog();
+      });
+      searchInput.addEventListener("input", event => {
+        state.search = event.target.value;
+        renderCatalog();
+      });
+      document.getElementById("clearFilters").addEventListener("click", () => {
+        state.category = "Semua";
+        state.color = "Semua";
+        state.search = "";
+        searchInput.value = "";
+        renderControls();
+        renderCatalog();
+      });
+      catalogGrid.addEventListener("click", event => {
+        const favorite = event.target.closest("[data-favorite]");
+        const quick = event.target.closest("[data-view]");
+        if (favorite) {
+          const id = Number(favorite.dataset.favorite);
+          state.favorites = state.favorites.includes(id) ? state.favorites.filter(item => item !== id) : [...state.favorites, id];
+          localStorage.setItem("etherealFavorites", JSON.stringify(state.favorites));
+          renderCatalog();
+        }
+        if (quick) openDesign(Number(quick.dataset.view));
+      });
+      document.getElementById("modalClose").addEventListener("click", closeModal);
+      document.getElementById("designModal").addEventListener("click", event => {
+        if (event.target.id === "designModal") closeModal();
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") closeModal();
+      });
+      document.getElementById("calcService").addEventListener("change", updateCalculator);
+      document.getElementById("addonGrid").addEventListener("change", updateCalculator);
+      document.querySelectorAll("[data-service]").forEach(button => {
+        button.addEventListener("click", () => {
+          document.getElementById("bookService").value = button.dataset.service;
+        });
+      });
+      document.querySelectorAll(".btn, .btn-ghost, .quick-btn, .filter-btn, .tab-btn").forEach(button => {
+        button.addEventListener("click", event => {
+          const ripple = document.createElement("span");
+          const rect = button.getBoundingClientRect();
+          ripple.className = "ripple";
+          ripple.style.left = `${event.clientX - rect.left}px`;
+          ripple.style.top = `${event.clientY - rect.top}px`;
+          button.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 700);
+        });
+      });
+      const topBtn = document.getElementById("topBtn");
+      window.addEventListener("scroll", () => {
+        topBtn.classList.toggle("show", window.scrollY > 650);
+      });
+      topBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    }
+
+    function refreshIcons() {
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function init() {
+      if (window.AOS) AOS.init({ duration: 850, once: true, offset: 90 });
+      renderServices();
+      renderControls();
+      renderCatalog();
+      renderInsights();
+      renderCalculator();
+      updateCountdown();
+      setupComparison();
+      setupFaq();
+      setupCounters();
+      setupBooking();
+      setupEvents();
+      refreshIcons();
+      if (window.AOS) AOS.refreshHard();
+      setInterval(updateCountdown, 1000);
+      window.addEventListener("load", () => {
+        setTimeout(() => document.getElementById("loader").classList.add("hide"), 450);
+      });
+      setTimeout(() => document.getElementById("loader").classList.add("hide"), 1800);
+    }
+
+    init();
   </script>
 </body>
 </html>
