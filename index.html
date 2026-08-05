@@ -2660,41 +2660,7 @@
           <h2>Disukai pelanggan yang memperhatikan detail.</h2>
           <p>Review pelanggan dengan hasil kuku favorit mereka.</p>
         </div>
-        <div class="testimonial-grid">
-          <article class="testimonial-card" data-aos="fade-up">
-            <div class="client-row">
-              <img class="client-photo" src="assets/yooo.jpeg" alt="Foto pelanggan Ayu">
-              <div>
-                <h3>Ayu Larasati</h3>
-                <div class="stars">★★★★★</div>
-              </div>
-            </div>
-            <p>Hasilnya rapi banget dan warna pink-nya mewah. Booking juga cepat via WhatsApp.</p>
-            <img class="result-photo" src="assets/merah.jpeg" alt="Hasil kuku Ayu">
-          </article>
-          <article class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="client-row">
-              <img class="client-photo" src="assets/kuku.jpeg" alt="Foto pelanggan Nabila">
-              <div>
-                <h3>Nabila Putri</h3>
-                <div class="stars">★★★★★</div>
-              </div>
-            </div>
-            <p>Salon terasa nyaman, alat bersih, dan nail artist-nya sabar bantu pilih desain.</p>
-            <img class="result-photo" src="assets/about.jpg" alt="Hasil kuku Nabila">
-          </article>
-          <article class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="client-row">
-              <img class="client-photo" src="assets/merah.jpeg" alt="Foto pelanggan Clara">
-              <div>
-                <h3>Clara Devina</h3>
-                <div class="stars">★★★★★</div>
-              </div>
-            </div>
-            <p>Wedding nails aku cantik sekali. Detail pearl dan chrome-nya kelihatan premium.</p>
-            <img class="result-photo" src="assets/hero2.png" alt="Hasil kuku Clara">
-          </article>
-        </div>
+        <div class="testimonial-grid" id="testimonialGrid"></div>
       </div>
     </section>
 
@@ -2706,15 +2672,15 @@
           <p>Ikuti feed kami untuk melihat update desain terbaru.</p>
         </div>
         <div class="instagram-grid" data-aos="fade-up">
-          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/merah.jpeg" alt="Nail art merah muda"></a>
-          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/yooo.jpeg" alt="Nail art minimalis"></a>
-          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/kuku.jpeg" alt="Nail art mewah"></a>
-          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/about.jpg" alt="Treatment salon"></a>
-          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/hero2.png" alt="Hasil nail studio"></a>
-          <a class="insta-tile" href="#" aria-label="Posting Instagram"><img src="assets/hero.png" alt="Desain kuku premium"></a>
+          <a class="insta-tile" data-social="instagram" href="https://www.instagram.com/ethereal.nailstudio.com/" target="_blank" rel="noopener noreferrer" aria-label="Posting Instagram"><img src="assets/merah.jpeg" alt="Nail art merah muda"></a>
+          <a class="insta-tile" data-social="instagram" href="https://www.instagram.com/ethereal.nailstudio.com/" target="_blank" rel="noopener noreferrer" aria-label="Posting Instagram"><img src="assets/yooo.jpeg" alt="Nail art minimalis"></a>
+          <a class="insta-tile" data-social="instagram" href="https://www.instagram.com/ethereal.nailstudio.com/" target="_blank" rel="noopener noreferrer" aria-label="Posting Instagram"><img src="assets/kuku.jpeg" alt="Nail art mewah"></a>
+          <a class="insta-tile" data-social="instagram" href="https://www.instagram.com/ethereal.nailstudio.com/" target="_blank" rel="noopener noreferrer" aria-label="Posting Instagram"><img src="assets/about.jpg" alt="Treatment salon"></a>
+          <a class="insta-tile" data-social="instagram" href="https://www.instagram.com/ethereal.nailstudio.com/" target="_blank" rel="noopener noreferrer" aria-label="Posting Instagram"><img src="assets/hero2.png" alt="Hasil nail studio"></a>
+          <a class="insta-tile" data-social="instagram" href="https://www.instagram.com/ethereal.nailstudio.com/" target="_blank" rel="noopener noreferrer" aria-label="Posting Instagram"><img src="assets/hero.png" alt="Desain kuku premium"></a>
         </div>
         <div style="display:flex;justify-content:center;margin-top:28px">
-          <a class="btn" href="#" aria-label="Buka Instagram"><i data-lucide="instagram"></i> Ikuti Instagram</a>
+          <a class="btn" data-social="instagram" href="https://www.instagram.com/ethereal.nailstudio.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka Instagram"><i data-lucide="instagram"></i> Ikuti Instagram</a>
         </div>
       </div>
     </section>
@@ -2825,8 +2791,8 @@
             </div>
             <div class="social-row">
               <a class="btn" href="https://wa.me/6282224425003"><i data-lucide="message-circle"></i> WhatsApp</a>
-              <a class="btn-ghost" href="#"><i data-lucide="instagram"></i> Instagram</a>
-              <a class="btn-ghost" href="#"><i data-lucide="music-2"></i> TikTok</a>
+              <a class="btn-ghost" data-social="instagram" href="https://www.instagram.com/ethereal.nailstudio.com/" target="_blank" rel="noopener noreferrer"><i data-lucide="instagram"></i> Instagram</a>
+              <a class="btn-ghost" data-social="tiktok" href="https://www.tiktok.com/@ethereal.nailstudio" target="_blank" rel="noopener noreferrer"><i data-lucide="music-2"></i> TikTok</a>
             </div>
           </div>
           <div class="map-frame" data-aos="fade-left">
@@ -2948,18 +2914,21 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
     const whatsappNumber = "6282224425003";
+    // Ubah URL akun sosial hanya di konfigurasi ini.
+    const socialLinks = Object.freeze({
+      instagram: "https://www.instagram.com/ethereal.nailstudio.com/",
+      tiktok: "https://www.tiktok.com/@ethereal.nailstudio"
+    });
     const money = value => `Rp${Number(value).toLocaleString("id-ID")}`;
 
-    const services = [
-      { icon: "sparkles", title: "Gel Polish", desc: "Warna glossy premium dengan cuticle care rapi dan hasil yang tahan lama.", duration: "60 menit", price: 120000, featured: true },
-      { icon: "hand", title: "Basic Manicure", desc: "Shape, buff, cuticle care, dan polish klasik untuk kuku harian yang bersih.", duration: "45 menit", price: 75000 },
-      { icon: "footprints", title: "Pedicure", desc: "Perawatan kaki relaks, pembentukan kuku, dan finishing polish yang lembut.", duration: "60 menit", price: 95000 },
-      { icon: "palette", title: "Nail Art Custom", desc: "Desain personal dengan aksen hand-painted dan detail premium.", duration: "1-3 jam", price: 150000, featured: true },
-      { icon: "badge-check", title: "French Nails", desc: "Tip klasik yang clean, timeless, tersedia gaya micro atau modern French.", duration: "75 menit", price: 135000 },
-      { icon: "sparkle", title: "Chrome Nails", desc: "Finishing mirror, glazed, atau aura chrome untuk kilau modern premium.", duration: "90 menit", price: 165000 },
-      { icon: "gem", title: "Wedding Nails", desc: "Set bridal lembut dengan pearl, shimmer, stones, dan nail art elegan.", duration: "2-3 jam", price: 250000, featured: true },
-      { icon: "move-up-right", title: "Extension Kuku", desc: "Panjang, bentuk, struktur, dan desain untuk set kuku yang lebih sculpted.", duration: "2 jam", price: 220000 }
-    ];
+    const store = {
+      get(key) { try { const value = JSON.parse(localStorage.getItem(`ethereal${key}`)); return Array.isArray(value) ? value : []; } catch (_) { return []; } },
+      set(key, value) { localStorage.setItem(`ethereal${key}`, JSON.stringify(value)); }
+    };
+    const uid = prefix => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+    const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "'":"&#39;", '"':"&quot;" })[char]);
+    const emptyRow = (columns, message) => `<tr><td colspan="${columns}" class="muted">${message}</td></tr>`;
+    let services = store.get("Services");
 
     const categories = ["Semua", "Classic", "Minimalis", "French", "Luxury", "Korean", "Wedding", "Glitter", "Chrome", "3D Art"];
     const colors = [
@@ -2976,24 +2945,24 @@
     ];
 
     const designs = [
-      { id: 1, name: "Rose Silk Gloss", category: "Classic", color: "Pink", style: "lembut, glossy, feminin", price: 120000, img: "assets/merah.jpeg", tags: ["Best Seller", "Tren"] },
-      { id: 2, name: "Milky White Almond", category: "Classic", color: "Putih", style: "milky, almond, clean girl", price: 125000, img: "assets/about.jpg", tags: ["Best Seller"] },
-      { id: 3, name: "Lavender Cloud", category: "Minimalis", color: "Ungu", style: "minimal, pastel, clean", price: 135000, img: "assets/hero2.png", tags: ["Baru"] },
-      { id: 4, name: "Tiny Dot Nude", category: "Minimalis", color: "Nude", style: "dot, simple, office, clean", price: 115000, img: "assets/kuku.jpeg", tags: [] },
-      { id: 5, name: "Micro French Blush", category: "French", color: "Pink", style: "micro French, clean, lembut", price: 135000, img: "assets/yooo.jpeg", tags: ["Best Seller"] },
-      { id: 6, name: "Classic French Square", category: "French", color: "Putih", style: "French klasik, square, clean", price: 130000, img: "assets/about.jpg", tags: ["Best Seller"] },
-      { id: 7, name: "Midnight Ribbon", category: "Luxury", color: "Hitam", style: "bold, elegan, ribbon", price: 185000, img: "assets/kuku.jpeg", tags: ["Baru"] },
-      { id: 8, name: "Crystal Bow Nails", category: "Luxury", color: "Silver", style: "bow, crystal, glam, elegan", price: 220000, img: "assets/hero.png", tags: ["Pita Mewah", "Tren"] },
-      { id: 9, name: "Blue Aura Tips", category: "Korean", color: "Biru", style: "aura, cute, gradient", price: 160000, img: "assets/yooo.jpeg", tags: ["Tren"] },
-      { id: 10, name: "Korean Syrup Pink", category: "Korean", color: "Pink", style: "syrup nails, Korean, glossy", price: 150000, img: "assets/merah.jpeg", tags: ["Tren"] },
-      { id: 11, name: "Pearl Whisper", category: "Wedding", color: "Putih", style: "bridal, pearl, luxury", price: 250000, img: "assets/about.jpg", tags: ["Pita Mewah"] },
-      { id: 12, name: "Soft Veil Wedding", category: "Wedding", color: "Nude", style: "wedding, veil, sheer, elegan", price: 235000, img: "assets/hero2.png", tags: [] },
-      { id: 13, name: "Gold Champagne Dust", category: "Glitter", color: "Gold", style: "sparkle, shimmer, pesta", price: 175000, img: "assets/about.jpg", tags: ["Pita Mewah"] },
-      { id: 14, name: "Pink Glitter Fade", category: "Glitter", color: "Pink", style: "glitter fade, sparkle, soft", price: 160000, img: "assets/merah.jpeg", tags: ["Tren"] },
-      { id: 15, name: "Silver Glazed Chrome", category: "Chrome", color: "Silver", style: "mirror, glazed, berkilau", price: 165000, img: "assets/hero.png", tags: ["Tren"] },
-      { id: 16, name: "Chrome Berry Luxe", category: "Chrome", color: "Ungu", style: "chrome berry, luxury, berkilau", price: 180000, img: "assets/merah.jpeg", tags: ["Tren"] },
-      { id: 17, name: "3D Bloom Garden", category: "3D Art", color: "Putih", style: "flower, tekstur, dimensional", price: 230000, img: "assets/hero2.png", tags: ["Baru"] },
-      { id: 18, name: "3D Pink Flower", category: "3D Art", color: "Pink", style: "flower, 3D, feminine, cute", price: 225000, img: "assets/merah.jpeg", tags: ["Best Seller"] }
+      { id: 1, name: "Rose Silk Gloss", category: "Classic", color: "Pink", style: "lembut, glossy, feminin", price: 120000, img: "assets/Rose Silk Gloss.jpg", tags: ["Best Seller", "Tren"] },
+      { id: 2, name: "Milky White Almond", category: "Classic", color: "Putih", style: "milky, almond, clean girl", price: 125000, img: "assets/Milky White Almond.jpg", tags: ["Best Seller"] },
+      { id: 3, name: "Lavender Cloud", category: "Minimalis", color: "Ungu", style: "minimal, pastel, clean", price: 135000, img: "assets/Lavender Cloud.jpg", tags: ["Baru"] },
+      { id: 4, name: "Tiny Dot Nude", category: "Minimalis", color: "Nude", style: "dot, simple, office, clean", price: 115000, img: "assets/Tiny Dot Nude.jpg", tags: [] },
+      { id: 5, name: "Micro French Blush", category: "French", color: "Pink", style: "micro French, clean, lembut", price: 135000, img: "assets/Micro French Blush.jpg", tags: ["Best Seller"] },
+      { id: 6, name: "Classic French Square", category: "French", color: "Putih", style: "French klasik, square, clean", price: 130000, img: "assets/Classic French Square.jpg", tags: ["Best Seller"] },
+      { id: 7, name: "Midnight Ribbon", category: "Luxury", color: "Hitam", style: "bold, elegan, ribbon", price: 185000, img: "assets/Midnight Ribbon.jpg", tags: ["Baru"] },
+      { id: 8, name: "Crystal Bow Nails", category: "Luxury", color: "Silver", style: "bow, crystal, glam, elegan", price: 220000, img: "assets/Crystal Bow Nails.jpg", tags: ["Pita Mewah", "Tren"] },
+      { id: 9, name: "Blue Aura Tips", category: "Korean", color: "Biru", style: "aura, cute, gradient", price: 160000, img: "assets/Blue Aura Tips.jpg", tags: ["Tren"] },
+      { id: 10, name: "Korean Syrup Pink", category: "Korean", color: "Pink", style: "syrup nails, Korean, glossy", price: 150000, img: "assets/Korean Syrup Pink.jpg", tags: ["Tren"] },
+      { id: 11, name: "Pearl Whisper", category: "Wedding", color: "Putih", style: "bridal, pearl, luxury", price: 250000, img: "assets/Pearl Whisper.jpg", tags: ["Pita Mewah"] },
+      { id: 12, name: "Soft Veil Wedding", category: "Wedding", color: "Nude", style: "wedding, veil, sheer, elegan", price: 235000, img: "assets/Soft Veil Wedding.jpg", tags: [] },
+      { id: 13, name: "Gold Champagne Dust", category: "Glitter", color: "Gold", style: "sparkle, shimmer, pesta", price: 175000, img: "assets/Gold Champagne Dust.jpg", tags: ["Pita Mewah"] },
+      { id: 14, name: "Pink Glitter Fade", category: "Glitter", color: "Pink", style: "glitter fade, sparkle, soft", price: 160000, img: "assets/Pink Glitter Fade.jpg", tags: ["Tren"] },
+      { id: 15, name: "Silver Glazed Chrome", category: "Chrome", color: "Silver", style: "mirror, glazed, berkilau", price: 165000, img: "assets/Silver Glazed Chrome.jpg", tags: ["Tren"] },
+      { id: 16, name: "Chrome Berry Luxe", category: "Chrome", color: "Ungu", style: "chrome berry, luxury, berkilau", price: 180000, img: "assets/Chrome Berry Luxe.jpg", tags: ["Tren"] },
+      { id: 17, name: "3D Bloom Garden", category: "3D Art", color: "Putih", style: "flower, tekstur, dimensional", price: 230000, img: "assets/3D Bloom Garden.jpg", tags: ["Baru"] },
+      { id: 18, name: "3D Pink Flower", category: "3D Art", color: "Pink", style: "flower, 3D, feminine, cute", price: 225000, img: "assets/3D Pink Flower.jpg", tags: ["Best Seller"] }
     ];
 
     const addons = [
@@ -3004,39 +2973,13 @@
       { name: "French", price: 25000 }
     ];
 
-    const artists = [
-      { id: 1, name: "Maya Prameswari", phone: "0812-4567-8890", schedule: "Senin, Rabu, Jumat / 09.00-17.00", bookings: 18, photo: "assets/yooo.jpeg" },
-      { id: 2, name: "Laras Kinanti", phone: "0821-1112-3344", schedule: "Selasa, Kamis, Sabtu / 11.00-20.00", bookings: 22, photo: "assets/kuku.jpeg" },
-      { id: 3, name: "Sasha Almira", phone: "0857-9090-1212", schedule: "Senin-Sabtu / 10.00-18.00", bookings: 14, photo: "assets/merah.jpeg" }
-    ];
-
-    const customers = [
-      { id: 1, name: "Ayu Larasati", email: "ayu@mail.id", phone: "0812-1000-2000", bookings: 7 },
-      { id: 2, name: "Nabila Putri", email: "nabila@mail.id", phone: "0813-3000-4000", bookings: 4 },
-      { id: 3, name: "Clara Devina", email: "clara@mail.id", phone: "0815-5000-6000", bookings: 5 },
-      { id: 4, name: "Dinda Maharani", email: "dinda@mail.id", phone: "0822-7000-8000", bookings: 2 }
-    ];
+    let artists = store.get("Artists");
+    let customers = store.get("Customers");
 
     const bookingStatuses = ["Menunggu", "Diterima", "Diproses", "Selesai", "Dibatalkan"];
-    const bookings = [
-      { id: "BK-1048", customer: "Ayu Larasati", service: "Gel Polish", artist: "Maya Prameswari", date: "2026-07-09", time: "10:00", status: "Menunggu", note: "Soft pink, glossy finish", amount: 120000 },
-      { id: "BK-1049", customer: "Nabila Putri", service: "Nail Art Custom", artist: "Laras Kinanti", date: "2026-07-09", time: "13:30", status: "Diterima", note: "Referensi Korean blush", amount: 185000 },
-      { id: "BK-1050", customer: "Clara Devina", service: "Wedding Nails", artist: "Sasha Almira", date: "2026-07-10", time: "09:30", status: "Diproses", note: "Pearl, lace, champagne", amount: 275000 },
-      { id: "BK-1051", customer: "Dinda Maharani", service: "Basic Manicure", artist: "Maya Prameswari", date: "2026-07-11", time: "15:00", status: "Selesai", note: "Clean nude manicure", amount: 75000 },
-      { id: "BK-1052", customer: "Ayu Larasati", service: "Extension Kuku", artist: "Laras Kinanti", date: "2026-07-13", time: "16:00", status: "Dibatalkan", note: "Reschedule minggu depan", amount: 220000 }
-    ];
-
-    const promotions = [
-      { code: "GLOW20", title: "Weekend Glow", value: "20% OFF", period: "Juli 2026" },
-      { code: "BRIDE15", title: "Bridal Soft Set", value: "15% OFF", period: "Musim wedding" },
-      { code: "RAYA25", title: "Holiday Nails", value: "25% OFF", period: "Hari raya" }
-    ];
-
-    const testimonials = [
-      { name: "Ayu Larasati", rating: 5, status: "Tampil", text: "Hasilnya rapi banget dan warna pink-nya mewah.", photo: "assets/merah.jpeg" },
-      { name: "Nabila Putri", rating: 5, status: "Tampil", text: "Salon nyaman, alat bersih, nail artist sabar.", photo: "assets/about.jpg" },
-      { name: "Clara Devina", rating: 5, status: "Disembunyikan", text: "Wedding nails cantik sekali.", photo: "assets/hero2.png" }
-    ];
+    let bookings = store.get("Bookings");
+    let promotions = store.get("Promotions");
+    let testimonials = store.get("Testimonials");
 
     const appState = {
       authMode: "login",
@@ -3107,7 +3050,7 @@
 
     function renderServices() {
       const serviceOptions = services.map(service => `<option value="${service.title}" data-price="${service.price}">${service.title} - ${money(service.price)}</option>`).join("");
-      servicesGrid.innerHTML = services.map((service, index) => `
+      servicesGrid.innerHTML = services.length ? services.map((service, index) => `
         <article class="service-card ${service.featured ? "featured" : ""}" data-aos="fade-up" data-aos-delay="${(index % 4) * 60}">
           ${service.featured ? `<span class="ribbon">Best Seller</span>` : ""}
           <span class="icon-chip"><i data-lucide="${service.icon}"></i></span>
@@ -3119,7 +3062,7 @@
           </div>
           <a class="btn-ghost" href="#booking" data-service="${service.title}"><i data-lucide="calendar-plus"></i> Booking</a>
         </article>
-      `).join("");
+      `).join("") : `<p class="muted">Belum ada layanan.</p>`;
       document.getElementById("calcService").innerHTML = serviceOptions;
       document.getElementById("bookService").innerHTML = `<option value="">Pilih layanan</option>${serviceOptions}`;
     }
@@ -3179,6 +3122,12 @@
         ? recentDesigns.map(design => `<span><i data-lucide="history"></i>${design.name}</span>`).join("")
         : `<span><i data-lucide="history"></i>Belum ada desain dilihat</span>`;
       refreshIcons();
+    }
+
+    function renderTestimonials() {
+      const grid = document.getElementById("testimonialGrid");
+      const visible = testimonials.filter(item => item.status === "Tampil");
+      grid.innerHTML = visible.length ? visible.map((item, index) => `<article class="testimonial-card" data-aos="fade-up" data-aos-delay="${index * 100}"><div class="client-row"><div><h3>${escapeHtml(item.name)}</h3><div class="stars">${"★".repeat(item.rating)}</div></div></div><p>${escapeHtml(item.text)}</p></article>`).join("") : `<p class="muted">Belum ada testimoni.</p>`;
     }
 
     function openDesign(id) {
@@ -3312,8 +3261,15 @@
           service: document.getElementById("bookService").value,
           notes: document.getElementById("bookNotes").value.trim() || "-"
         };
+        const service = services.find(item => item.title === data.service);
+        const customer = customers.find(item => item.phone === data.phone);
+        if (!customer) { customers.push({ id: uid("CUS"), name: data.name, email: "", phone: data.phone }); store.set("Customers", customers); }
+        else { customer.name = data.name; store.set("Customers", customers); }
+        bookings.push({ id: uid("BK"), customer: data.name, customerPhone: data.phone, service: data.service, artist: "-", date: data.date, time: data.time, status: "Menunggu", note: data.notes, amount: Number(service?.price || 0) });
+        store.set("Bookings", bookings);
         const message = `Halo Ethereal Nail Studio, saya ingin booking appointment.%0A%0ANama: ${encodeURIComponent(data.name)}%0ANo HP: ${encodeURIComponent(data.phone)}%0ATanggal: ${encodeURIComponent(data.date)}%0AJam: ${encodeURIComponent(data.time)}%0ALayanan: ${encodeURIComponent(data.service)}%0ACatatan: ${encodeURIComponent(data.notes)}%0A%0AMohon konfirmasi jadwalnya.`;
         window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+        event.target.reset();
       });
     }
 
@@ -3359,37 +3315,49 @@
       `;
     }
 
+    function monthlyData(type) {
+      const now = new Date();
+      return Array.from({ length: 6 }, (_, index) => {
+        const date = new Date(now.getFullYear(), now.getMonth() - 5 + index, 1);
+        const prefix = date.toISOString().slice(0, 7);
+        const list = bookings.filter(item => item.date && item.date.startsWith(prefix));
+        return type === "amount" ? list.filter(item => item.status !== "Dibatalkan").reduce((sum, item) => sum + Number(item.amount || 0), 0) : list.length;
+      });
+    }
+
+    function exportReport(format) {
+      const rows = [["ID", "Pelanggan", "Layanan", "Tanggal", "Jam", "Status", "Nominal"], ...bookings.map(item => [item.id, item.customer, item.service, item.date, item.time, item.status, item.amount])];
+      const csv = rows.map(row => row.map(value => `"${String(value ?? "").replace(/"/g, '""')}"`).join(",")).join("\n");
+      if (format === "pdf") {
+        const popup = window.open("", "_blank");
+        if (popup) { popup.document.write(`<html><head><title>Laporan Ethereal</title></head><body><h1>Laporan Booking Ethereal Nail Studio</h1><pre>${escapeHtml(csv)}</pre></body></html>`); popup.document.close(); popup.print(); }
+        return;
+      }
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8;" }));
+      link.download = "laporan-booking-ethereal.csv";
+      link.click(); URL.revokeObjectURL(link.href);
+    }
+
     function notificationList(role) {
-      const items = {
-        admin: [
-          ["bell-plus", "Booking baru", "Ayu Larasati meminta slot hari ini pukul 10.00."],
-          ["user-plus", "Pelanggan baru", "Dinda Maharani membuat akun pelanggan."],
-          ["message-square-heart", "Review baru", "Nabila memberi rating 5 untuk Gel Polish."]
-        ],
-        employee: [
-          ["calendar-plus", "Booking baru", "Kamu mendapat booking Nail Art Custom pukul 13.30."],
-          ["calendar-clock", "Jadwal berubah", "Slot Jumat digeser menjadi 11.00-20.00."]
-        ],
-        customer: [
-          ["check-circle", "Booking diterima", "Booking Gel Polish kamu sudah diterima."],
-          ["gift", "Promo baru", "Gunakan GLOW20 untuk diskon akhir pekan."],
-          ["alarm-clock", "Pengingat H-1", "Besok ada appointment pukul 10.00."]
-        ]
-      };
+      const items = role === "admin"
+        ? [...bookings.slice(-3).map(item => ["bell-plus", "Booking baru", `${item.customer} membuat booking ${item.service}.`]), ...testimonials.slice(-2).map(item => ["message-square-heart", "Review baru", `${item.name} memberi rating ${item.rating}.`])]
+        : [];
       return `
         <div class="notification-list">
-          ${items[role].map(item => `
+          ${items.length ? items.map(item => `
             <article class="notification-card">
               <span class="icon-chip" style="margin:0"><i data-lucide="${item[0]}"></i></span>
               <div><strong>${item[1]}</strong><p>${item[2]}</p></div>
             </article>
-          `).join("")}
+          `).join("") : `<p class="muted">Belum ada notifikasi.</p>`}
         </div>
       `;
     }
 
     function bookingRows(scope = "all") {
-      const list = scope === "employee" ? bookings.filter(item => item.artist === "Maya Prameswari") : bookings;
+      const list = scope === "employee" ? bookings.filter(item => item.artist === appState.user?.name) : bookings;
+      if (!list.length) return [emptyRow(7, "Belum ada booking.")];
       return list.map(item => `
         <tr>
           <td><strong>${item.id}</strong><br><span class="muted">${item.date} / ${item.time}</span></td>
@@ -3402,13 +3370,16 @@
             <select class="status-select" data-booking-status="${item.id}">
               ${bookingStatuses.map(status => `<option ${status === item.status ? "selected" : ""}>${status}</option>`).join("")}
             </select>
+            <button class="table-action" type="button" data-action="edit-booking" data-id="${item.id}">Edit</button>
+            <button class="table-action" type="button" data-action="delete-booking" data-id="${item.id}">Hapus</button>
           </td>
         </tr>
       `);
     }
 
     function renderAdminPage(page) {
-      const todayBookings = bookings.filter(item => item.date === "2026-07-09").length;
+      const today = new Date().toISOString().slice(0, 10);
+      const todayBookings = bookings.filter(item => item.date === today).length;
       const revenue = bookings.filter(item => item.status === "Selesai" || item.status === "Diterima" || item.status === "Diproses").reduce((sum, item) => sum + item.amount, 0);
       if (page === "dashboard") {
         return `
@@ -3423,58 +3394,74 @@
             { icon: "sparkles", label: "Layanan aktif", value: services.length }
           ])}
           <div class="chart-row">
-            ${chartCard("Grafik Pendapatan", ["Feb", "Mar", "Apr", "Mei", "Jun", "Jul"], [8, 12, 15, 18, 21, 25])}
-            ${chartCard("Grafik Booking", ["Feb", "Mar", "Apr", "Mei", "Jun", "Jul"], [22, 28, 31, 36, 42, 48])}
+            ${chartCard("Grafik Pendapatan", ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun"], monthlyData("amount"))}
+            ${chartCard("Grafik Booking", ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun"], monthlyData("count"))}
           </div>
           ${notificationList("admin")}
         `;
       }
       if (page === "bookings") {
-        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Booking</h2><p>Terima, tolak, ubah jadwal, dan perbarui status booking.</p></div></div>${table(["ID", "Pelanggan", "Layanan", "Karyawan", "Status", "Nominal", "Ubah Status"], bookingRows())}</section>`;
+        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Booking</h2><p>Terima, tolak, ubah jadwal, dan perbarui status booking.</p></div><input id="bookingSearch" placeholder="Cari booking"></div>${table(["ID", "Pelanggan", "Layanan", "Karyawan", "Status", "Nominal", "Ubah Status"], bookingRows())}</section>`;
       }
       if (page === "customers") {
-        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Pelanggan</h2><p>Cari pelanggan, lihat riwayat, dan hapus akun bila diperlukan.</p></div><button class="mini-action"><i data-lucide="search"></i> Cari</button></div>${table(["Nama", "Email", "Nomor HP", "Total Booking", "Aksi"], customers.map(item => `<tr><td>${item.name}</td><td>${item.email}</td><td>${item.phone}</td><td>${item.bookings}</td><td class="action-row"><button class="table-action">Riwayat</button><button class="table-action">Hapus</button></td></tr>`))}</section>`;
+        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Pelanggan</h2><p>Cari pelanggan, lihat riwayat, dan hapus akun bila diperlukan.</p></div><input id="customerSearch" placeholder="Cari pelanggan"></div>${table(["Nama", "Email", "Nomor HP", "Total Booking", "Aksi"], customers.length ? customers.map(item => `<tr data-customer-row><td>${escapeHtml(item.name)}</td><td>${escapeHtml(item.email || "-")}</td><td>${escapeHtml(item.phone)}</td><td>${bookings.filter(booking => booking.customerPhone === item.phone || booking.customer === item.name).length}</td><td class="action-row"><button class="table-action" data-action="customer-history" data-id="${item.id}">Riwayat</button><button class="table-action" data-action="delete-customer" data-id="${item.id}">Hapus</button></td></tr>`) : [emptyRow(5, "Belum ada pelanggan.")])}</section>`;
       }
       if (page === "employees") {
-        return `<div class="management-grid"><section class="form-panel"><div class="panel-title"><div><h2>Tambah Karyawan</h2><p>Kelola data, jadwal kerja, dan jumlah booking nail artist.</p></div></div><div class="form-grid"><div class="field"><label>Nama</label><input placeholder="Nama karyawan"></div><div class="field"><label>Nomor HP</label><input placeholder="08xxxxxxxx"></div><div class="field wide"><label>Jadwal Kerja</label><input placeholder="Senin-Sabtu / 09.00-17.00"></div><button class="btn" type="button"><i data-lucide="plus"></i> Tambah Karyawan</button></div></section><section class="table-card">${table(["Nama", "Nomor HP", "Jadwal", "Booking", "Aksi"], artists.map(item => `<tr><td>${item.name}</td><td>${item.phone}</td><td>${item.schedule}</td><td>${item.bookings}</td><td class="action-row"><button class="table-action">Edit</button><button class="table-action">Hapus</button></td></tr>`))}</section></div>`;
+        return `<div class="management-grid"><section class="form-panel"><div class="panel-title"><div><h2>Tambah Karyawan</h2><p>Kelola data, jadwal kerja, dan jumlah booking nail artist.</p></div></div><form id="employeeForm" class="form-grid"><div class="field"><label>Nama</label><input name="name" placeholder="Nama karyawan" required></div><div class="field"><label>Nomor HP</label><input name="phone" placeholder="08xxxxxxxx" required></div><div class="field wide"><label>Jadwal Kerja</label><input name="schedule" placeholder="Senin-Sabtu / 09.00-17.00" required></div><button class="btn" type="submit"><i data-lucide="plus"></i> Tambah Karyawan</button></form></section><section class="table-card">${table(["Nama", "Nomor HP", "Jadwal", "Booking", "Aksi"], artists.length ? artists.map(item => `<tr><td>${escapeHtml(item.name)}</td><td>${escapeHtml(item.phone)}</td><td>${escapeHtml(item.schedule)}</td><td>${bookings.filter(booking => booking.artist === item.name).length}</td><td class="action-row"><button class="table-action" data-action="edit-employee" data-id="${item.id}">Edit</button><button class="table-action" data-action="delete-employee" data-id="${item.id}">Hapus</button></td></tr>`) : [emptyRow(5, "Belum ada karyawan.")])}</section></div>`;
       }
       if (page === "services") {
-        return `<div class="management-grid"><section class="form-panel"><div class="panel-title"><div><h2>Manajemen Layanan</h2><p>Tambah foto, harga, durasi, dan deskripsi layanan.</p></div></div><div class="form-grid"><div class="field"><label>Nama Layanan</label><input value="Basic Manicure"></div><div class="field"><label>Harga</label><input value="75000"></div><div class="field"><label>Durasi</label><input value="45 menit"></div><div class="field"><label>Foto</label><input type="file"></div><div class="field wide"><label>Deskripsi</label><textarea>Shape, buff, cuticle care, dan polish klasik.</textarea></div><button class="btn" type="button"><i data-lucide="save"></i> Simpan Layanan</button></div></section><section class="table-card">${table(["Layanan", "Harga", "Durasi", "Deskripsi", "Aksi"], services.slice(0, 5).map(item => `<tr><td>${item.title}</td><td>${money(item.price)}</td><td>${item.duration}</td><td>${item.desc}</td><td class="action-row"><button class="table-action">Edit</button><button class="table-action">Hapus</button></td></tr>`))}</section></div>`;
+        return `<div class="management-grid"><section class="form-panel"><div class="panel-title"><div><h2>Manajemen Layanan</h2><p>Tambah foto, harga, durasi, dan deskripsi layanan.</p></div></div><form id="serviceForm" class="form-grid"><div class="field"><label>Nama Layanan</label><input name="title" required></div><div class="field"><label>Harga</label><input name="price" type="number" min="0" required></div><div class="field"><label>Durasi</label><input name="duration" required></div><div class="field wide"><label>Deskripsi</label><textarea name="desc" required></textarea></div><button class="btn" type="submit"><i data-lucide="save"></i> Simpan Layanan</button></form></section><section class="table-card">${table(["Layanan", "Harga", "Durasi", "Deskripsi", "Aksi"], services.length ? services.map(item => `<tr><td>${escapeHtml(item.title)}</td><td>${money(item.price)}</td><td>${escapeHtml(item.duration)}</td><td>${escapeHtml(item.desc)}</td><td class="action-row"><button class="table-action" data-action="edit-service" data-id="${item.id}">Edit</button><button class="table-action" data-action="delete-service" data-id="${item.id}">Hapus</button></td></tr>`) : [emptyRow(5, "Belum ada layanan.")])}</section></div>`;
       }
       if (page === "gallery") {
         return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Galeri</h2><p>Upload, edit, dan hapus foto inspirasi nail art.</p></div><button class="btn"><i data-lucide="upload"></i> Upload Foto</button></div><div class="gallery-mini">${designs.slice(0, 12).map(item => `<img src="${item.img}" alt="${item.name}">`).join("")}</div></section>`;
       }
       if (page === "promo") {
-        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Promo</h2><p>Buat voucher, diskon bulanan, dan promo hari raya.</p></div><button class="btn"><i data-lucide="ticket-percent"></i> Buat Promo</button></div>${table(["Kode", "Promo", "Nilai", "Periode", "Aksi"], promotions.map(item => `<tr><td><strong>${item.code}</strong></td><td>${item.title}</td><td>${item.value}</td><td>${item.period}</td><td class="action-row"><button class="table-action">Edit</button><button class="table-action">Hapus</button></td></tr>`))}</section>`;
+        return `<div class="management-grid"><section class="form-panel"><div class="panel-title"><div><h2>Manajemen Promo</h2><p>Buat voucher, diskon bulanan, dan promo hari raya.</p></div></div><form id="promoForm" class="form-grid"><div class="field"><label>Kode</label><input name="code" required></div><div class="field"><label>Promo</label><input name="title" required></div><div class="field"><label>Nilai</label><input name="value" required></div><div class="field"><label>Periode</label><input name="period" required></div><button class="btn" type="submit"><i data-lucide="ticket-percent"></i> Simpan Promo</button></form></section><section class="table-card">${table(["Kode", "Promo", "Nilai", "Periode", "Aksi"], promotions.length ? promotions.map(item => `<tr><td><strong>${escapeHtml(item.code)}</strong></td><td>${escapeHtml(item.title)}</td><td>${escapeHtml(item.value)}</td><td>${escapeHtml(item.period)}</td><td class="action-row"><button class="table-action" data-action="edit-promo" data-id="${item.id}">Edit</button><button class="table-action" data-action="delete-promo" data-id="${item.id}">Hapus</button></td></tr>`) : [emptyRow(5, "Belum ada promo.")])}</section></div>`;
       }
       if (page === "reviews") {
-        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Testimoni</h2><p>Lihat, hapus, atau sembunyikan review yang tidak pantas.</p></div></div>${table(["Pelanggan", "Rating", "Komentar", "Status", "Aksi"], testimonials.map(item => `<tr><td>${item.name}</td><td>${"★".repeat(item.rating)}</td><td>${item.text}</td><td><span class="status-pill">${item.status}</span></td><td class="action-row"><button class="table-action">Sembunyikan</button><button class="table-action">Hapus</button></td></tr>`))}</section>`;
+        return `<section class="table-card"><div class="panel-title"><div><h2>Manajemen Testimoni</h2><p>Lihat, hapus, atau sembunyikan review yang tidak pantas.</p></div></div>${table(["Pelanggan", "Rating", "Komentar", "Status", "Aksi"], testimonials.length ? testimonials.map(item => `<tr><td>${escapeHtml(item.name)}</td><td>${"★".repeat(item.rating)}</td><td>${escapeHtml(item.text)}</td><td><span class="status-pill">${item.status}</span></td><td class="action-row"><button class="table-action" data-action="toggle-review" data-id="${item.id}">${item.status === "Tampil" ? "Sembunyikan" : "Tampilkan"}</button><button class="table-action" data-action="delete-review" data-id="${item.id}">Hapus</button></td></tr>`) : [emptyRow(5, "Belum ada testimoni.")])}</section>`;
       }
-      return `<section class="table-card"><div class="panel-title"><div><h2>Laporan</h2><p>Laporan pendapatan, booking, dan pelanggan bisa diekspor ke PDF atau Excel.</p></div><div class="action-row"><button class="btn"><i data-lucide="file-text"></i> PDF</button><button class="btn-ghost"><i data-lucide="file-spreadsheet"></i> Excel</button></div></div>${table(["Laporan", "Periode", "Total", "Status"], [["Pendapatan", "Juli 2026", money(revenue), "Siap ekspor"], ["Booking", "Juli 2026", `${bookings.length} booking`, "Siap ekspor"], ["Pelanggan", "Juli 2026", `${customers.length} pelanggan`, "Siap ekspor"]].map(item => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td><td><span class="status-pill done">${item[3]}</span></td></tr>`))}</section>`;
+      const period = new Date().toLocaleDateString("id-ID", { month: "long", year: "numeric" });
+      return `<section class="table-card"><div class="panel-title"><div><h2>Laporan</h2><p>Laporan pendapatan, booking, dan pelanggan bisa diekspor ke PDF atau Excel.</p></div><div class="action-row"><button class="btn" data-action="export-pdf"><i data-lucide="file-text"></i> PDF</button><button class="btn-ghost" data-action="export-excel"><i data-lucide="file-spreadsheet"></i> Excel</button></div></div>${table(["Laporan", "Periode", "Total", "Status"], [["Pendapatan", period, money(revenue), "Siap ekspor"], ["Booking", period, `${bookings.length} booking`, "Siap ekspor"], ["Pelanggan", period, `${customers.length} pelanggan`, "Siap ekspor"]].map(item => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td><td><span class="status-pill done">${item[3]}</span></td></tr>`))}</section>`;
     }
 
     function renderEmployeePage(page) {
       if (page === "dashboard") {
-        return `${statCards([{ icon: "calendar-check", label: "Booking hari ini", value: 1 }, { icon: "calendar-days", label: "Booking minggu ini", value: 5 }, { icon: "badge-check", label: "Booking selesai", value: 12 }])}<section class="table-card"><div class="panel-title"><div><h2>Booking Saya</h2><p>Daftar pelanggan yang menjadi tanggung jawabmu.</p></div></div>${table(["ID", "Pelanggan", "Layanan", "Tanggal", "Status", "Nominal", "Update"], bookingRows("employee"))}</section>${notificationList("employee")}`;
+        const mine = bookings.filter(item => item.artist === appState.user?.name);
+        const today = new Date().toISOString().slice(0, 10);
+        return `${statCards([{ icon: "calendar-check", label: "Booking hari ini", value: mine.filter(item => item.date === today).length }, { icon: "calendar-days", label: "Total booking", value: mine.length }, { icon: "badge-check", label: "Booking selesai", value: mine.filter(item => item.status === "Selesai").length }])}<section class="table-card"><div class="panel-title"><div><h2>Booking Saya</h2><p>Daftar pelanggan yang menjadi tanggung jawabmu.</p></div></div>${table(["ID", "Pelanggan", "Layanan", "Tanggal", "Status", "Nominal", "Update"], bookingRows("employee"))}</section>`;
       }
-      if (page === "schedule") return `<section class="table-card"><div class="panel-title"><div><h2>Jadwal Kerja</h2><p>Jadwal aktif untuk minggu ini.</p></div></div>${table(["Hari", "Jam", "Studio", "Catatan"], [["Senin", "09.00-17.00", "Room Rose", "Gel Polish"], ["Rabu", "09.00-17.00", "Room Pearl", "Nail Art"], ["Jumat", "11.00-20.00", "Room Rose", "Extension"]].map(item => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td><td>${item[3]}</td></tr>`))}</section>`;
+      if (page === "schedule") { const artist = artists.find(item => item.name === appState.user?.name); return `<section class="table-card"><div class="panel-title"><div><h2>Jadwal Kerja</h2><p>Jadwal aktif untuk minggu ini.</p></div></div>${table(["Jadwal", "Status"], artist ? [`<tr><td>${escapeHtml(artist.schedule)}</td><td><span class="status-pill done">Aktif</span></td></tr>`] : [emptyRow(2, "Belum ada jadwal kerja.")])}</section>`; }
       if (page === "myBookings" || page === "status") return `<section class="table-card"><div class="panel-title"><div><h2>${page === "status" ? "Update Status" : "Booking Saya"}</h2><p>Karyawan dapat mengubah status menjadi Sedang Dikerjakan atau Selesai.</p></div></div>${table(["ID", "Nama Pelanggan", "Layanan", "Tanggal", "Catatan", "Status", "Update"], bookingRows("employee"))}</section>`;
       return profilePanel("Karyawan");
     }
 
     function renderCustomerPage(page) {
       if (page === "dashboard") {
-        return `${statCards([{ icon: "calendar-heart", label: "Booking berikutnya", value: "10 Jul" }, { icon: "gift", label: "Promo terbaru", value: "GLOW20" }, { icon: "sparkles", label: "Rekomendasi", value: "Chrome" }])}<div class="chart-row"><section class="table-card"><div class="panel-title"><div><h2>Booking Mendatang</h2><p>Jadwal yang sudah masuk antrean studio.</p></div></div>${table(["Layanan", "Nail Artist", "Tanggal", "Jam", "Status"], bookings.slice(0, 3).map(item => `<tr><td>${item.service}</td><td>${item.artist}</td><td>${item.date}</td><td>${item.time}</td><td><span class="status-pill ${statusClass(item.status)}">${item.status}</span></td></tr>`))}</section>${notificationList("customer")}</div>`;
+        const mine = bookings.filter(item => item.customer === appState.user?.name || (appState.user?.email && customers.find(customer => customer.email === appState.user.email)?.phone === item.customerPhone));
+        const next = mine.filter(item => item.status !== "Dibatalkan" && item.date >= new Date().toISOString().slice(0, 10)).sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`))[0];
+        return `${statCards([{ icon: "calendar-heart", label: "Booking berikutnya", value: next ? next.date : 0 }, { icon: "gift", label: "Promo tersedia", value: promotions.length }, { icon: "badge-check", label: "Booking selesai", value: mine.filter(item => item.status === "Selesai").length }])}<div class="chart-row"><section class="table-card"><div class="panel-title"><div><h2>Booking Mendatang</h2><p>Jadwal yang sudah masuk antrean studio.</p></div></div>${table(["Layanan", "Nail Artist", "Tanggal", "Jam", "Status"], mine.length ? mine.map(item => `<tr><td>${escapeHtml(item.service)}</td><td>${escapeHtml(item.artist)}</td><td>${item.date}</td><td>${item.time}</td><td><span class="status-pill ${statusClass(item.status)}">${item.status}</span></td></tr>`) : [emptyRow(5, "Belum ada booking.")])}</section></div>`;
       }
       if (page === "booking") return customerBookingPanel();
-      if (page === "history") return `<section class="table-card"><div class="panel-title"><div><h2>Riwayat Booking</h2><p>Booking selesai, dibatalkan, dan mendatang.</p></div></div>${table(["ID", "Layanan", "Tanggal", "Status", "Catatan"], bookings.map(item => `<tr><td>${item.id}</td><td>${item.service}</td><td>${item.date} / ${item.time}</td><td><span class="status-pill ${statusClass(item.status)}">${item.status}</span></td><td>${item.note}</td></tr>`))}</section>`;
-      if (page === "wishlist" || page === "favorites" || page === "inspiration") return `<section class="table-card"><div class="panel-title"><div><h2>${page === "wishlist" ? "Wishlist Desain" : page === "favorites" ? "Layanan Favorit" : "Galeri Inspirasi"}</h2><p>Sukai dan simpan desain nail art favoritmu.</p></div></div><div class="gallery-mini">${designs.slice(0, 12).map(item => `<img src="${item.img}" alt="${item.name}">`).join("")}</div></section>`;
-      if (page === "review") return `<section class="form-panel"><div class="panel-title"><div><h2>Review</h2><p>Berikan rating, komentar, dan upload foto hasil nail art.</p></div></div><div class="form-grid"><div class="field"><label>Rating</label><select><option>★★★★★</option><option>★★★★</option></select></div><div class="field"><label>Upload Foto</label><input type="file"></div><div class="field wide"><label>Komentar</label><textarea placeholder="Bagikan pengalamanmu"></textarea></div><button class="btn" type="button"><i data-lucide="send"></i> Kirim Review</button></div></section>`;
+      if (page === "history") { const mine = bookings.filter(item => item.customer === appState.user?.name); return `<section class="table-card"><div class="panel-title"><div><h2>Riwayat Booking</h2><p>Booking selesai, dibatalkan, dan mendatang.</p></div></div>${table(["ID", "Layanan", "Tanggal", "Status", "Catatan"], mine.length ? mine.map(item => `<tr><td>${item.id}</td><td>${escapeHtml(item.service)}</td><td>${item.date} / ${item.time}</td><td><span class="status-pill ${statusClass(item.status)}">${item.status}</span></td><td>${escapeHtml(item.note)}</td></tr>`) : [emptyRow(5, "Belum ada booking.")])}</section>`; }
+      if (page === "wishlist" || page === "favorites") return favoriteItemsPanel(page);
+      if (page === "inspiration") return `<section class="table-card"><div class="panel-title"><div><h2>Galeri Inspirasi</h2><p>Sukai dan simpan desain nail art favoritmu.</p></div></div><div class="gallery-mini">${designs.slice(0, 12).map(item => `<img src="${item.img}" alt="${item.name}">`).join("")}</div></section>`;
+      if (page === "review") return `<section class="form-panel"><div class="panel-title"><div><h2>Review</h2><p>Berikan rating, komentar, dan upload foto hasil nail art.</p></div></div><form id="reviewForm" class="form-grid"><div class="field"><label>Rating</label><select name="rating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option></select></div><div class="field wide"><label>Komentar</label><textarea name="text" placeholder="Bagikan pengalamanmu" required></textarea></div><button class="btn" type="submit"><i data-lucide="send"></i> Kirim Review</button></form></section>`;
       return profilePanel("Pelanggan");
     }
 
+    function favoriteItemsPanel(page) {
+      const title = page === "wishlist" ? "Wishlist Desain" : "Favorit";
+      const savedDesigns = state.favorites.map(id => designs.find(item => item.id === Number(id))).filter(Boolean);
+      if (!savedDesigns.length) {
+        return `<section class="table-card"><div class="panel-title"><div><h2>${title}</h2><p>Simpan desain yang kamu sukai untuk dilihat kembali di sini.</p></div></div><div class="empty-state" style="display:block"><span class="icon-chip"><i data-lucide="heart"></i></span><h3>Belum ada item.</h3><p>Kamu belum menambahkan desain atau layanan ke daftar favorit/wishlist. Jelajahi katalog lalu tekan ikon hati untuk menyimpannya.</p><button class="btn" type="button" data-action="explore-catalog"><i data-lucide="search"></i> Jelajahi Katalog</button></div></section>`;
+      }
+      return `<section class="table-card"><div class="panel-title"><div><h2>${title}</h2><p>Desain yang sudah kamu simpan.</p></div></div><div class="gallery-mini">${savedDesigns.map(item => `<article class="design-card"><div class="design-media"><img src="${item.img}" alt="${escapeHtml(item.name)}"><button class="favorite-btn active" type="button" data-action="remove-favorite" data-id="${item.id}" aria-label="Hapus ${escapeHtml(item.name)} dari favorit"><i data-lucide="heart"></i></button></div><div class="design-body"><h3>${escapeHtml(item.name)}</h3><div class="design-meta"><span>${escapeHtml(item.category)} / ${escapeHtml(item.color)}</span><span class="design-price">${money(item.price)}</span></div></div></article>`).join("")}</div></section>`;
+    }
+
     function customerBookingPanel() {
-      return `<section class="form-panel"><div class="panel-title"><div><h2>Booking Baru</h2><p>Pilih layanan, nail artist, tanggal, jam, dan catatan desain.</p></div></div><div class="form-grid"><div class="field"><label>Layanan</label><select>${services.map(item => `<option>${item.title}</option>`).join("")}</select></div><div class="field"><label>Nail Artist</label><select>${artists.map(item => `<option>${item.name}</option>`).join("")}</select></div><div class="field"><label>Tanggal</label><input type="date"></div><div class="field"><label>Jam</label><input type="time"></div><div class="field wide"><label>Catatan</label><textarea placeholder="Referensi warna, desain, dan kebutuhan khusus"></textarea></div><button class="btn" type="button"><i data-lucide="calendar-plus"></i> Simpan Booking</button></div></section>`;
+      if (!services.length) return `<section class="form-panel"><p class="muted">Belum ada layanan.</p></section>`;
+      return `<section class="form-panel"><div class="panel-title"><div><h2>Booking Baru</h2><p>Pilih layanan, nail artist, tanggal, jam, dan catatan desain.</p></div></div><form id="dashboardBookingForm" class="form-grid"><div class="field"><label>Layanan</label><select name="service">${services.map(item => `<option>${escapeHtml(item.title)}</option>`).join("")}</select></div><div class="field"><label>Nail Artist</label><select name="artist"><option value="-">Belum ditentukan</option>${artists.map(item => `<option>${escapeHtml(item.name)}</option>`).join("")}</select></div><div class="field"><label>Tanggal</label><input name="date" type="date" required></div><div class="field"><label>Jam</label><input name="time" type="time" required></div><div class="field wide"><label>Catatan</label><textarea name="note" placeholder="Referensi warna, desain, dan kebutuhan khusus"></textarea></div><button class="btn" type="submit"><i data-lucide="calendar-plus"></i> Simpan Booking</button></form></section>`;
     }
 
     function profilePanel(roleLabel) {
@@ -3504,6 +3491,10 @@
         name: document.getElementById("authName").value.trim() || roleConfig[role].label,
         email: document.getElementById("authEmail").value.trim()
       };
+      if (role === "customer" && appState.user.email && !customers.some(item => item.email === appState.user.email)) {
+        customers.push({ id: uid("CUS"), name: appState.user.name, email: appState.user.email, phone: "" });
+        store.set("Customers", customers);
+      }
       appState.page = "dashboard";
       closeAuth();
       document.body.classList.remove("locked");
@@ -3574,8 +3565,69 @@
         const booking = bookings.find(item => item.id === select.dataset.bookingStatus);
         if (booking) {
           booking.status = select.value === "Diproses" && appState.user?.role === "employee" ? "Diproses" : select.value;
+          store.set("Bookings", bookings);
           renderApp();
         }
+      });
+      document.getElementById("appContent").addEventListener("submit", event => {
+        const form = event.target;
+        if (!form.matches("#employeeForm, #serviceForm, #promoForm, #dashboardBookingForm, #reviewForm")) return;
+        event.preventDefault();
+        const data = Object.fromEntries(new FormData(form));
+        if (form.id === "employeeForm") { artists.push({ id: uid("EMP"), ...data }); store.set("Artists", artists); }
+        if (form.id === "serviceForm") { services.push({ id: uid("SVC"), icon: "sparkles", featured: false, ...data, price: Number(data.price) }); store.set("Services", services); renderServices(); renderCalculator(); }
+        if (form.id === "promoForm") { promotions.push({ id: uid("PRO"), ...data }); store.set("Promotions", promotions); }
+        if (form.id === "dashboardBookingForm") {
+          const service = services.find(item => item.title === data.service);
+          bookings.push({ id: uid("BK"), customer: appState.user?.name || "Pelanggan", customerPhone: appState.user?.phone || "", ...data, status: "Menunggu", amount: Number(service?.price || 0) });
+          store.set("Bookings", bookings);
+        }
+        if (form.id === "reviewForm") { testimonials.push({ id: uid("REV"), name: appState.user?.name || "Pelanggan", rating: Number(data.rating), text: data.text, status: "Tampil" }); store.set("Testimonials", testimonials); }
+        if (form.id === "reviewForm") renderTestimonials();
+        renderApp();
+      });
+      document.getElementById("appContent").addEventListener("click", event => {
+        const button = event.target.closest("[data-action]");
+        if (!button) return;
+        const { action, id } = button.dataset;
+        const remove = (collection, key) => collection.filter(item => String(item.id) !== String(id));
+        const edit = (collection, key, fields) => {
+          const item = collection.find(value => String(value.id) === String(id));
+          if (!item) return;
+          fields.forEach(field => { const value = prompt(field.label, item[field.key] ?? ""); if (value !== null) item[field.key] = field.number ? Number(value) : value; });
+          store.set(key, collection);
+        };
+        if (action === "delete-booking") { bookings = remove(bookings); store.set("Bookings", bookings); }
+        if (action === "delete-customer") { customers = remove(customers); store.set("Customers", customers); }
+        if (action === "delete-employee") { artists = remove(artists); store.set("Artists", artists); }
+        if (action === "delete-service") { services = remove(services); store.set("Services", services); renderServices(); renderCalculator(); }
+        if (action === "delete-promo") { promotions = remove(promotions); store.set("Promotions", promotions); }
+        if (action === "delete-review") { testimonials = remove(testimonials); store.set("Testimonials", testimonials); }
+        if (action === "toggle-review") { const item = testimonials.find(value => String(value.id) === String(id)); if (item) { item.status = item.status === "Tampil" ? "Disembunyikan" : "Tampil"; store.set("Testimonials", testimonials); } }
+        if (action === "edit-booking") edit(bookings, "Bookings", [{ key:"date", label:"Tanggal" }, { key:"time", label:"Jam" }, { key:"artist", label:"Karyawan" }, { key:"note", label:"Catatan" }]);
+        if (action === "edit-employee") edit(artists, "Artists", [{ key:"name", label:"Nama" }, { key:"phone", label:"Nomor HP" }, { key:"schedule", label:"Jadwal" }]);
+        if (action === "edit-service") edit(services, "Services", [{ key:"title", label:"Nama layanan" }, { key:"price", label:"Harga", number:true }, { key:"duration", label:"Durasi" }, { key:"desc", label:"Deskripsi" }]);
+        if (action === "edit-promo") edit(promotions, "Promotions", [{ key:"code", label:"Kode" }, { key:"title", label:"Promo" }, { key:"value", label:"Nilai" }, { key:"period", label:"Periode" }]);
+        if (action === "customer-history") { const item = customers.find(value => String(value.id) === String(id)); alert((bookings.filter(booking => booking.customerPhone === item?.phone || booking.customer === item?.name).map(booking => `${booking.id}: ${booking.service} (${booking.status})`).join("\n")) || "Belum ada riwayat booking."); return; }
+        if (action === "export-excel") exportReport("csv");
+        if (action === "export-pdf") exportReport("pdf");
+        if (action === "remove-favorite") {
+          state.favorites = state.favorites.filter(favoriteId => Number(favoriteId) !== Number(id));
+          localStorage.setItem("etherealFavorites", JSON.stringify(state.favorites));
+          renderCatalog();
+        }
+        if (action === "explore-catalog") {
+          logoutApp();
+          window.location.hash = "catalog";
+          return;
+        }
+        renderApp();
+      });
+      document.getElementById("appContent").addEventListener("input", event => {
+        if (!event.target.matches("#bookingSearch, #customerSearch")) return;
+        const query = event.target.value.toLowerCase();
+        const rows = event.target.closest(".table-card").querySelectorAll("tbody tr");
+        rows.forEach(row => { row.style.display = row.textContent.toLowerCase().includes(query) ? "" : "none"; });
       });
       categoryTabs.addEventListener("click", event => {
         const button = event.target.closest("[data-category]");
@@ -3650,12 +3702,23 @@
       if (window.lucide) lucide.createIcons();
     }
 
+    function applySocialLinks() {
+      document.querySelectorAll("[data-social]").forEach(link => {
+        const url = socialLinks[link.dataset.social];
+        if (!url) return;
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      });
+    }
+
     function init() {
       if (window.AOS) AOS.init({ duration: 850, once: true, offset: 90 });
       renderServices();
       renderControls();
       renderCatalog();
       renderInsights();
+      renderTestimonials();
       renderCalculator();
       updateCountdown();
       setupComparison();
@@ -3663,6 +3726,7 @@
       setupCounters();
       setupBooking();
       setupEvents();
+      applySocialLinks();
       refreshIcons();
       if (window.AOS) AOS.refreshHard();
       setInterval(updateCountdown, 1000);

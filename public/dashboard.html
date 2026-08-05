@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Ethereal Nail Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body data-page="dashboard">
+  <div class="page-shell">
+    <aside class="page-sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-mark">EN</span>
+        <div>
+          <strong id="sidebarBrandName">Dashboard</strong>
+          <p style="margin: 8px 0 0; color: var(--muted); font-size: .95rem;">Sistem manajemen booking terintegrasi.</p>
+        </div>
+      </div>
+      <nav class="sidebar-nav" id="dashboardNav"></nav>
+      <div class="sidebar-meta">
+        <p>Logout jika selesai menggunakan dashboard.</p>
+      </div>
+    </aside>
+    <main class="page-main">
+      <div class="page-header">
+        <div>
+          <h1 id="dashboardTitle">Dashboard</h1>
+          <p id="dashboardSubtitle">Memuat informasi akun...</p>
+        </div>
+        <div class="user-pill">
+          <span class="avatar" id="userAvatar">EN</span>
+          <div>
+            <strong id="userName">Pengguna</strong>
+            <span id="userRole" style="display:block;font-size:.95rem;color:var(--muted)">Role</span>
+          </div>
+          <button id="logoutButton" class="btn-ghost" type="button" style="margin-left:auto;">Logout</button>
+        </div>
+      </div>
+      <div id="dashboardContent"></div>
+    </main>
+  </div>
+  <div id="appToast" class="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
